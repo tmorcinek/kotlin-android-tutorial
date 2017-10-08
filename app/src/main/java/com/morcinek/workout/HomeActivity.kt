@@ -8,18 +8,17 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.Menu
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.home.*
 
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own Kotlin action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Replace with your own Kotlin action, INjected Views", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
     }
