@@ -18,20 +18,23 @@ class HomeActivity : AppCompatActivity() {
         fab.setOnClickListener {
             Snackbar.make(it, "Replace with your own Kotlin action, INjected Views", Snackbar.LENGTH_LONG)
                     .setAction("Action", {
-                        toast("Anko Working")
+                        toast(isThisAJoke())
                     }).show()
         }
     }
+
+    fun isThisAJoke() = "NO Its not a Joke"
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.home_menu, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_settings -> {
+            toast("Settings Action")
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 }
