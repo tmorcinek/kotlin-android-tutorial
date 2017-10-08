@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.home.*
+import org.jetbrains.anko.toast
 
 class HomeActivity : AppCompatActivity() {
 
@@ -16,7 +17,9 @@ class HomeActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             Snackbar.make(it, "Replace with your own Kotlin action, INjected Views", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                    .setAction("Action", {
+                        toast("Anko Working")
+                    }).show()
         }
     }
 
