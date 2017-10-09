@@ -11,21 +11,26 @@ application to assist me. I am calling this application 'Workout'.
 Work on this application goes in steps, each step either integrates some new functionality 
 or demonstrates usage of specific feature of Kotlin Language. 
 
-Each step has its own tag, and a corresponding video on Youtube.
+Each step has its own tag (name in the round brackets), and a corresponding video on Youtube.
 
-### 1 Kotlin Integration (kotlin-integration)
+### 1 Project Setup (project-setup)
+
+ - Creating new Project in Android Studio
+ - Initialising GIT
+
+### 2 Kotlin Integration (kotlin-integration)
 
  - Adding Kotlin plugins to build.gradle
  - Converting Java Code into Kotlin Code
 
-### 2 Kotlin View Injections (view-injections)
+### 3 Kotlin View Injections (view-injections)
 
  - Adding Kotlin Android Extensions Plugin  
  `apply plugin: 'kotlin-android-extensions'`
  - Using auto-generated properties for views in View Class (Activity)  
  `import kotlinx.android.synthetic.main.home.*`
 
-### 3 Anko Integration (anko-integration)
+### 4 Anko Integration (anko-integration)
 
  - Code Cleanup
  - Adding Anko library to the project  
