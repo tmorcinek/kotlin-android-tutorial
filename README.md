@@ -15,15 +15,21 @@ Each step has its own tag (name in the round brackets), and a corresponding vide
 
 ### 1 Project Setup (project-setup)
 
+https://www.youtube.com/watch?v=zfmT8fVlMhY
+
  - Creating new Project in Android Studio
  - Initialising GIT
 
 ### 2 Kotlin Integration (kotlin-integration)
 
+https://www.youtube.com/watch?v=8HuBoPYb0gw
+
  - Adding Kotlin plugins to build.gradle
  - Converting Java Code into Kotlin Code
 
 ### 3 Kotlin View Injections (view-injections)
+
+https://www.youtube.com/watch?v=cs4YZg3P4Ik
 
  - Adding Kotlin Android Extensions Plugin  
  `apply plugin: 'kotlin-android-extensions'`
@@ -31,6 +37,8 @@ Each step has its own tag (name in the round brackets), and a corresponding vide
  `import kotlinx.android.synthetic.main.home.*`
 
 ### 4 Anko Integration (anko-integration)
+
+https://www.youtube.com/watch?v=SG77qTm38nw
 
  - Code Cleanup
  - Adding Anko library to the project  
