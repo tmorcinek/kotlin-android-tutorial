@@ -16,8 +16,8 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            snackbar(it, "Replace with your own Kotlin action, INjected Views").setAction("Action"){
-                toast("Action Cicked")
+            snackbar(it, "Replace with your own Kotlin action, INjected Views").setAction("Action") {
+                toast("Action Clicked")
             }
         }
     }

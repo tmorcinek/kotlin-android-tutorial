@@ -47,6 +47,19 @@ https://www.youtube.com/watch?v=SG77qTm38nw
  `fun isThisAJoke() = "NO Its not a Joke"`
 
 
+### 5 Splash Screen (splash-screen)
+
+https://youtu.be/kUI1LRmPCBo
+
+ - Adding Anko Design library to the project  
+ `compile "org.jetbrains.anko:anko-design:$versions.anko"`
+ - Examples of Anko usage:  
+ `snackbar`  
+ `doAsync`  
+ `uiThread`  
+ `startActivity<HomeActivity>()`  
+
+
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
