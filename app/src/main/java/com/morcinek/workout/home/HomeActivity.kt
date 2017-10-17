@@ -1,22 +1,30 @@
-package com.morcinek.workout
+package com.morcinek.workout.home
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.morcinek.workout.R
+import com.morcinek.workout.common.di.component
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
+
+    @Inject lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
+        component.inject(this)
+
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            snackbar(it, "Replace with your own Kotlin action, INjected Views").setAction("Action") {
+            snackbar(it, "Replace with your own Kotlin action, With Context: $context").setAction("Action") {
                 toast("Action Clicked")
             }
         }
