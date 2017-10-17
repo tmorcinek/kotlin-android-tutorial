@@ -60,11 +60,30 @@ https://youtu.be/kUI1LRmPCBo
  `startActivity<HomeActivity>()`  
 
 
+### 6 Splash Screen according to Google Guidelines (google-splash)
+
+https://youtu.be/r9KPvkAk0BM
+
+ - Implementation of Splash Screen to enhance User Experience
+ - Based on: https://www.bignerdranch.com/blog/splash-screens-the-right-way/
+
+
+### 7 Dagger Integration (dagger-integration)
+
+https://youtu.be/F0OwtSrhh0o
+
+ - Integration of dagger into Android Kotlin Project.
+ - Creation and usage of 'Extension Function'
+ - Creation and usage of 'Extension Property'
+
+
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
 
 [Kotlink.Anko] (https://github.com/Kotlin/anko/)
+
+[Dagger] (https://github.com/google/dagger)
 
 
 ## Developed By
