@@ -74,8 +74,7 @@ https://youtu.be/F0OwtSrhh0o
 
  - Integration of dagger into Android Kotlin Project.
  - Creation and usage of 'Extension Function'  
- `fun AppCompatActivity.component() : ApplicationComponent = (application as Application).component
-  `
+ `fun AppCompatActivity.component() : ApplicationComponent = (application as Application).component`
  - Creation and usage of 'Extension Property'  
  `val AppCompatActivity.component: ApplicationComponent
       get() = (application as Application).component`
