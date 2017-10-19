@@ -80,6 +80,19 @@ https://youtu.be/F0OwtSrhh0o
       get() = (application as Application).component`
 
 
+### 8 Counter Initial (counter-initial)
+
+https://youtu.be/v7pe5JN_eLs
+
+ - Using CountDownTimer for executing task after interval.
+ - Introduction to 'val' property  
+ `val name: String = "tomasz" `
+ - Introduction to 'var' property  
+ `@Inject lateinit var context: Context`
+ - Introduction to anonymous class in kotlin  
+ `val timer = object : CountDownTimer(...`
+
+
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
@@ -91,7 +104,9 @@ https://youtu.be/F0OwtSrhh0o
 
 ## Developed By
 
-Tomasz Morcinek - http://morcinek.co.uk
+Tomasz Morcinek 
+tomasz.morcinek@gmail.com
+tomasz.morcinek.dev@gmail.com
 
 <a href="https://plus.google.com/+TomaszMorcinek">
   <img alt="Follow me on Google+"
