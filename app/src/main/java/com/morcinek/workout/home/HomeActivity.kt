@@ -2,12 +2,12 @@ package com.morcinek.workout.home
 
 import android.content.Context
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.text.format.DateUtils
 import android.view.Menu
 import android.view.MenuItem
 import com.morcinek.workout.R
+import com.morcinek.workout.common.FunctionalCountDownTimer
 import com.morcinek.workout.common.di.component
 import kotlinx.android.synthetic.main.content_home.*
 import kotlinx.android.synthetic.main.home.*
@@ -25,15 +25,9 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        val timer = object : CountDownTimer(DateUtils.SECOND_IN_MILLIS * 5, DateUtils.SECOND_IN_MILLIS) {
-            override fun onFinish() {
-                timerText.text = "Count Down Finished"
-            }
-
-            override fun onTick(millisUntilFinished: Long) {
-                timerText.text = "Count Down: ${millisUntilFinished / 1000}"
-            }
-        }
+        val timer = FunctionalCountDownTimer(5 * DateUtils.SECOND_IN_MILLIS, DateUtils.SECOND_IN_MILLIS)
+        timer.onFinish { timerText.text = "Count down finished" }
+//        timer.onTick { timerText.text = "Count down: ${it / 1000}" }
 
         fab.setOnClickListener {
             timer.start()
