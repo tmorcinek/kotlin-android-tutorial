@@ -93,6 +93,23 @@ https://youtu.be/v7pe5JN_eLs
  `val timer = object : CountDownTimer(...`
 
 
+### 9 Lateinit Nullability (lateinit-nullability)
+
+https://youtu.be/0N72ZisrwSE
+
+ - Lateinit var property  
+ `lateinit var onFinishFunction: () -> Unit)`
+ - Nullability in practice  
+ `private var onFinishFunction: (() -> Unit)? = null`
+ - Function/Lambda as a property  
+ `lateinit var onTickFunction: (Long) -> Unit`
+ - Function/Lambda as a method argument  
+ `fun onFinish(onFinishFunction: () -> Unit) {`
+ - Invocation of Function/Lambda  
+ `onFinishFunction.invoke()`  
+ `onFinishFunction()`  
+
+
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
