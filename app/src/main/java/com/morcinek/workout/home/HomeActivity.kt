@@ -1,6 +1,5 @@
 package com.morcinek.workout.home
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.format.DateUtils
@@ -8,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.morcinek.workout.R
 import com.morcinek.workout.common.FunctionalCountDownTimer
+import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.di.component
 import kotlinx.android.synthetic.main.content_home.*
 import kotlinx.android.synthetic.main.home.*
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
 
-    @Inject lateinit var context: Context
+    @Inject lateinit var notificationCenter: NotificationCenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,11 @@ class HomeActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val timer = FunctionalCountDownTimer(5 * DateUtils.SECOND_IN_MILLIS, DateUtils.SECOND_IN_MILLIS)
-        timer.onFinish { timerText.text = "Count down finished" }
-//        timer.onTick { timerText.text = "Count down: ${it / 1000}" }
+        timer.onFinish {
+            timerText.text = "Count down finished"
+            notificationCenter.sendNotifications()
+        }
+        timer.onTick { timerText.text = "Count down: ${it / 1000}" }
 
         fab.setOnClickListener {
             timer.start()
