@@ -110,6 +110,22 @@ https://youtu.be/0N72ZisrwSE
  `onFinishFunction()`  
 
 
+### 10 Dagger Injections, Val Property (dagger-val-property)
+
+https://youtu.be/DXamJSAHyGQ
+
+ - Adding new Dagger Module
+ - Initializing component with two Modules
+ - Creating Singleton object in Module
+ - Val Property Lazy Initialization  
+`private val ringtone by lazy {`  
+`    RingtoneManager.getRingtone(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))`  
+`}`
+ - Val Property with Getter  
+ `private val flags: Int`  
+ `get() = PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP`  
+
+
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
