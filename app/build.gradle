@@ -23,8 +23,8 @@ android {
 }
 
 ext.versions = [
-        anko   : '0.10.1',
-        dagger : '2.12',
+        anko  : '0.10.1',
+        dagger: '2.12',
 ]
 
 dependencies {

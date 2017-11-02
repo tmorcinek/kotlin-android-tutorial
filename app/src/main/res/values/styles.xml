@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="SplashText">
-        <item name="android:layout_marginBottom">@dimen/big_margin</item>
-        <item name="android:layout_marginTop">@dimen/big_margin</item>
+    <style name="OvalButtonText">
+        <item name="android:layout_width">210dp</item>
+        <item name="android:layout_height">210dp</item>
+        <item name="android:padding">@dimen/view_padding</item>
         <item name="android:textColor">@color/textWhite</item>
-        <item name="android:textSize">45sp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@drawable/oval_accent</item>
     </style>
+    <style name="OvalButtonText.Secondary">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:background">@drawable/oval_primary</item>
+    </style>
+
+    <style name="SeriesText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/view_padding</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+
 </resources>

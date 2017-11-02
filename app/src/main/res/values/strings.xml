@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Workout</string>
     <string name="action_settings">Settings</string>
+
+    <string name="exercise_label">Exercise</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="break_button">Start Break</string>
+    <string name="finish_exercise_button">Finish Exercise</string>
+    <string name="series_number_label">Series number:</string>
+    <string name="break_splash_text">Break has finished</string>
+    <string name="break_splash_series_text">Start series: %d</string>
+
+    <string name="stop">Stop</string>
+    <string name="restart">Restart</string>
 </resources>
