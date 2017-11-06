@@ -3,7 +3,7 @@
     package="com.morcinek.workout">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".Application"
@@ -25,7 +25,12 @@
         </activity>
         <activity
             android:name=".home.HomeActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".exercise.ExerciseActivity"
+            android:label="@string/exercise_label"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

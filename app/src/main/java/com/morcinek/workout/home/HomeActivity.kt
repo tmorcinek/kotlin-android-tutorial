@@ -9,8 +9,10 @@ import com.morcinek.workout.R
 import com.morcinek.workout.common.FunctionalCountDownTimer
 import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.di.component
+import com.morcinek.workout.exercise.ExerciseActivity
 import kotlinx.android.synthetic.main.content_home.*
 import kotlinx.android.synthetic.main.home.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
@@ -25,15 +27,8 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        val timer = FunctionalCountDownTimer(5 * DateUtils.SECOND_IN_MILLIS, DateUtils.SECOND_IN_MILLIS)
-        timer.onFinish {
-            timerText.text = "Count down finished"
-            notificationCenter.sendNotifications()
-        }
-        timer.onTick { timerText.text = "Count down: ${it / 1000}" }
-
         fab.setOnClickListener {
-            timer.start()
+            startActivity<ExerciseActivity>()
         }
     }
 
