@@ -15,30 +15,33 @@ Each step has its own tag (name in the round brackets), and a corresponding vide
 
 ### 1 Project Setup (project-setup)
 
-https://www.youtube.com/watch?v=zfmT8fVlMhY
+https://youtu.be/zfmT8fVlMhY
 
  - Creating new Project in Android Studio
  - Initialising GIT
 
+
 ### 2 Kotlin Integration (kotlin-integration)
 
-https://www.youtube.com/watch?v=8HuBoPYb0gw
+https://youtu.be/8HuBoPYb0gw
 
  - Adding Kotlin plugins to build.gradle
  - Converting Java Code into Kotlin Code
 
+
 ### 3 Kotlin View Injections (view-injections)
 
-https://www.youtube.com/watch?v=cs4YZg3P4Ik
+https://youtu.be/cs4YZg3P4Ik
 
  - Adding Kotlin Android Extensions Plugin  
  `apply plugin: 'kotlin-android-extensions'`
  - Using auto-generated properties for views in View Class (Activity)  
  `import kotlinx.android.synthetic.main.home.*`
 
+
 ### 4 Anko Integration (anko-integration)
 
-https://www.youtube.com/watch?v=SG77qTm38nw
+https://youtu.be/SG77qTm38nw
 
  - Code Cleanup
  - Adding Anko library to the project  
@@ -93,7 +96,7 @@ https://youtu.be/v7pe5JN_eLs
  `val timer = object : CountDownTimer(...`
 
 
-### 9 Lateinit Nullability (lateinit-nullability)
+### 9 Lateinit, Nullability (lateinit-nullability)
 
 https://youtu.be/0N72ZisrwSE
 
@@ -126,6 +129,18 @@ https://youtu.be/DXamJSAHyGQ
  `get() = PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP`  
 
 
+### 11 Method with Default Arguments (default-arguments-method)
+
+https://youtu.be/mbXjX3xeOL0
+
+ - Method with Default Arguments  
+`    fun replaceFragment(fragment: Fragment, tag: String = fragment.javaClass.name, addToBackStack: Boolean = false) {`
+ - Constructor with Default Arguments  
+ `class ContentFragmentManager(private val activity: FragmentActivity, private val contentLayoutId: Int = R.id.contentFrame) {`  
+ - Showing Fragment inside Activity
+ - Creating `ContentFragmentManager` to replace fragments in `FrameLayout`
+ 
+ 
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
