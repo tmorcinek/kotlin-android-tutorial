@@ -1,17 +1,14 @@
 package com.morcinek.workout.exercise.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.morcinek.workout.R
+import com.morcinek.workout.common.fragment.BaseFragment
 import kotlinx.android.synthetic.main.exercise_series.*
 
-class SeriesFragment : Fragment() {
+class SeriesFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater?.inflate(R.layout.exercise_series, container, false)
+    override val layoutResourceId = R.layout.exercise_series
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.morcinek.workout.exercise.ExerciseActivity">
+
+    <Button
+        android:id="@+id/startNewSeriesButton"
+        style="@style/OvalButtonText.Secondary"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/double_margin"
+        android:text="Start new Series" />
+
+    <TextView
+        android:id="@+id/seriesNumberText"
+        style="@style/SeriesText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/big_margin"
+        android:text="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/seriesNumberText"
+        android:layout_alignTop="@id/seriesNumberText"
+        android:layout_toLeftOf="@id/seriesNumberText"
+        android:layout_toStartOf="@id/seriesNumberText"
+        android:gravity="center"
+        android:text="@string/series_number_label" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progress_bar_accent"
+        android:background="@drawable/progress_bar_background"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/progress_bar_text" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        style="@style/OvalButtonText.Secondary"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/double_margin"
+        android:text="Cancel" />
+
+</RelativeLayout>
