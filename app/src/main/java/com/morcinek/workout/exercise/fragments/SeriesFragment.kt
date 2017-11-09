@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.morcinek.workout.R
 import com.morcinek.workout.common.fragment.BaseFragment
+import com.morcinek.workout.exercise.exerciseDataManager
 import kotlinx.android.synthetic.main.exercise_series.*
 
 class SeriesFragment : BaseFragment() {
@@ -14,7 +15,7 @@ class SeriesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         seriesNumberText.text = "1"
-        breakButton.setOnClickListener { }
+        breakButton.setOnClickListener { exerciseDataManager.showBreak() }
         finishButton.setOnClickListener { activity.onBackPressed() }
     }
 }

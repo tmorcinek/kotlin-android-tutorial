@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.morcinek.workout.R
 import com.morcinek.workout.common.fragment.BaseFragment
+import com.morcinek.workout.exercise.exerciseDataManager
 import kotlinx.android.synthetic.main.exercise_break_splash.*
 
 class BreakSplashFragment : BaseFragment() {
@@ -15,7 +16,7 @@ class BreakSplashFragment : BaseFragment() {
 
         breakSplashText.text = getString(R.string.break_splash_series_text, 1)
         view?.setOnClickListener {
-            // TODO show SeriesFragment
+            exerciseDataManager.showSeries()
         }
     }
 }
