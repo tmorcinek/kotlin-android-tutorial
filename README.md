@@ -141,6 +141,33 @@ https://youtu.be/mbXjX3xeOL0
  - Creating `ContentFragmentManager` to replace fragments in `FrameLayout`
  
  
+### 12 Abstract Property, Open Modifier (abstract-open-property)
+
+https://youtu.be/W08I-X7fWVw
+
+ - Creating BaseFragment  
+ - Creating Abstract Property  
+ `protected abstract val layoutResourceId: Int`  
+ - Creating Open Property  
+ `open protected val menuResourceId: Int? = null`  
+ - Making 'Java Virtual method' final  
+ `final override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?)`  
+
+ 
+### 13 Custom Property Setter (custom-property-setter)
+
+https://youtu.be/xyzYjlaSkAs
+
+ - Creating Custom Property Setter  
+`    var delegate: Delegate? = null`  
+`        set(value) {`  
+`            field = value`  
+`            notifyStateChanged()`  
+`        }`  
+ - Creating Data Model
+ - Creating Data Manager
+
+ 
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
