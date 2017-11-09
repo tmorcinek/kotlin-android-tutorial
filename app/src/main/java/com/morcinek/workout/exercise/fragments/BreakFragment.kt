@@ -20,11 +20,10 @@ class BreakFragment : BaseFragment() {
         FunctionalCountDownTimer(breakIntervalInMillis, 100)
     }
 
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        seriesNumberText.text = "1"
+        seriesNumberText.text = "${exerciseDataManager.exerciseData.seriesNumber}"
         startNewSeriesButton.setOnClickListener {
             exerciseDataManager.incrementSeriesNumber()
             exerciseDataManager.showSeries()
@@ -49,9 +48,9 @@ class BreakFragment : BaseFragment() {
         timer.start()
     }
 
-    private fun updateProgress(it: Long) {
-        timerText.text = "${it / 1000}.${it % 1000 / 100}"
-        progressBar.progress = (breakIntervalInMillis - it).toInt()
+    private fun updateProgress(progress: Long) {
+        timerText.text = "${progress / 1000}.${progress % 1000 / 100}"
+        progressBar.progress = (breakIntervalInMillis - progress).toInt()
     }
 
     override fun onDestroy() {

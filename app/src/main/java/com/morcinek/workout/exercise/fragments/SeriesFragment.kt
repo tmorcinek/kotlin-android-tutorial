@@ -14,7 +14,7 @@ class SeriesFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        seriesNumberText.text = "1"
+        seriesNumberText.text = "${exerciseDataManager.exerciseData.seriesNumber}"
         breakButton.setOnClickListener { exerciseDataManager.showBreak() }
         finishButton.setOnClickListener { activity.onBackPressed() }
     }

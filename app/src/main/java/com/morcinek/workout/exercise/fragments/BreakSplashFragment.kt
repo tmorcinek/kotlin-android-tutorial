@@ -14,7 +14,7 @@ class BreakSplashFragment : BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        breakSplashText.text = getString(R.string.break_splash_series_text, 1)
+        breakSplashText.text = getString(R.string.break_splash_series_text, exerciseDataManager.exerciseData.seriesNumber)
         view?.setOnClickListener {
             exerciseDataManager.showSeries()
         }
