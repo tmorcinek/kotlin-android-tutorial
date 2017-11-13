@@ -168,6 +168,26 @@ https://youtu.be/xyzYjlaSkAs
  - Creating Data Manager
 
  
+### 14 String Templates (string-templates)
+
+https://youtu.be/jM3YmULqUcQ
+
+ - String Template with value  
+`timerText.text = "$value"`  
+ - String Template with expression  
+`seriesNumberText.text = "${exerciseDataManager.exerciseData.seriesNumber}"`  
+
+ 
+### 15 Elvis Operator, Equality (elvis-operator-equality)
+
+https://youtu.be/Wn9-JarDvok
+
+ - Using Elvis Operator  
+`fragmentManager.fragments.firstOrNull { it?.isVisible ?: false }`  
+ - Using equality '==' sign correctly  
+`if (currentFragment?.javaClass != fragment.javaClass) {`
+
+ 
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
