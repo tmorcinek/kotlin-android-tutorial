@@ -188,6 +188,24 @@ https://youtu.be/Wn9-JarDvok
 `if (currentFragment?.javaClass != fragment.javaClass) {`
 
  
+### 16 Dagger Subcomponent, Custom Scope (dagger-subcomponent)
+
+https://youtu.be/xRRRujQly-0
+
+ - Creating Dagger Module for specific Activity
+ - Creating Dagger Subcomponent  
+`@Subcomponent(modules = arrayOf(ExerciseModule::class))`
+ - Creating Custom Scope to be used by Subcomponent  
+`annotation class ActivityScope`  
+
+ 
+### 17 Anko Alert Dialog (anko-alert-dialog)
+
+https://youtu.be/qOxt4xOas2M
+
+ - Creating Alert Dialog using Anko Library  
+
+ 
 ## Useful links
 
 [Kotlin.org] (https://kotlinlang.org/)
