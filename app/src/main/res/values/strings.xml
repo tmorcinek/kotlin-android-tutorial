@@ -4,6 +4,8 @@
 
     <string name="exercise_label">Exercise</string>
     <string name="exercise_name">Exercise Name</string>
+    <string name="exercise_exit_message">Are you sure you want to exit this exercise?</string>
+
     <string name="break_button">Start Break</string>
     <string name="finish_exercise_button">Finish Exercise</string>
     <string name="series_number_label">Series number:</string>

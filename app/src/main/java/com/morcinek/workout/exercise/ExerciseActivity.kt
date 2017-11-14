@@ -13,6 +13,9 @@ import com.morcinek.workout.exercise.fragments.BreakFragment
 import com.morcinek.workout.exercise.fragments.BreakSplashFragment
 import com.morcinek.workout.exercise.fragments.SeriesFragment
 import kotlinx.android.synthetic.main.exercise.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.yesButton
 import javax.inject.Inject
 
 class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
@@ -61,6 +64,17 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (exerciseDataManager.exerciseHasStarted) {
+            alert(R.string.exercise_exit_message) {
+                yesButton { super.onBackPressed() }
+                noButton {  }
+            }.show()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
 

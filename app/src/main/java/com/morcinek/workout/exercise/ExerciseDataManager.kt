@@ -36,4 +36,7 @@ class ExerciseDataManager {
     interface Delegate {
         fun onStateChanged(exerciseState: ExerciseData.ExerciseState)
     }
+
+    val exerciseHasStarted: Boolean
+        get() = (exerciseData.seriesNumber > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.Series)
 }
