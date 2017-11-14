@@ -3,6 +3,8 @@ package com.morcinek.workout.common.di
 import com.morcinek.workout.home.HomeActivity
 import com.morcinek.workout.common.di.modules.AndroidModule
 import com.morcinek.workout.common.di.modules.ApplicationModule
+import com.morcinek.workout.exercise.di.ExerciseComponent
+import com.morcinek.workout.exercise.di.ExerciseModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,4 +13,6 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(activity: HomeActivity)
+
+    fun add(exerciseModule: ExerciseModule) : ExerciseComponent
 }

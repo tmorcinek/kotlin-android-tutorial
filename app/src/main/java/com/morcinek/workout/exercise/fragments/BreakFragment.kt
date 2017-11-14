@@ -5,13 +5,19 @@ import android.text.format.DateUtils
 import android.view.View
 import com.morcinek.workout.R
 import com.morcinek.workout.common.FunctionalCountDownTimer
+import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.fragment.BaseFragment
-import com.morcinek.workout.exercise.exerciseDataManager
+import com.morcinek.workout.exercise.ExerciseDataManager
+import com.morcinek.workout.exercise.exerciseComponent
 import kotlinx.android.synthetic.main.exercise_break.*
+import javax.inject.Inject
 
 class BreakFragment : BaseFragment() {
 
     override val layoutResourceId = R.layout.exercise_break
+
+    @Inject lateinit var exerciseDataManager: ExerciseDataManager
+    @Inject lateinit var notificationCenter: NotificationCenter
 
     private val breakIntervalInMillis: Long
         get() = exerciseDataManager.exerciseData.breakIntervalSeconds * DateUtils.SECOND_IN_MILLIS
@@ -22,6 +28,7 @@ class BreakFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        exerciseComponent.inject(this)
 
         seriesNumberText.text = "${exerciseDataManager.exerciseData.seriesNumber}"
         startNewSeriesButton.setOnClickListener {
@@ -41,7 +48,7 @@ class BreakFragment : BaseFragment() {
         }
         timer.onFinish {
             updateProgress(0)
-            //TODO sendNotifications
+            notificationCenter.sendNotifications()
             exerciseDataManager.incrementSeriesNumber()
             exerciseDataManager.showBreakSplash()
         }
