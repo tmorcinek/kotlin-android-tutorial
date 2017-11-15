@@ -217,8 +217,8 @@ https://youtu.be/qOxt4xOas2M
 
 ## Developed By
 
-Tomasz Morcinek 
-tomasz.morcinek@gmail.com
+Tomasz Morcinek  
+tomasz.morcinek@gmail.com  
 tomasz.morcinek.dev@gmail.com
 
 <a href="https://plus.google.com/+TomaszMorcinek">
