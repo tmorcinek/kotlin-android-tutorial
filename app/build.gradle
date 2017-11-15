@@ -23,8 +23,9 @@ android {
 }
 
 ext.versions = [
-        anko  : '0.10.1',
-        dagger: '2.12',
+        anko    : '0.10.1',
+        dagger  : '2.12',
+        support : '26.+',
 ]
 
 dependencies {
@@ -36,11 +37,9 @@ dependencies {
     compile "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile "com.android.support:appcompat-v7:$versions.support"
+    compile "com.android.support:design:$versions.support"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.+'
+
     testCompile 'junit:junit:4.12'
 }
