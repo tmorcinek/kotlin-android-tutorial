@@ -70,7 +70,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
         if (exerciseDataManager.exerciseHasStarted) {
             alert(R.string.exercise_exit_message) {
                 yesButton { super.onBackPressed() }
-                noButton {  }
+                noButton { }
             }.show()
         } else {
             super.onBackPressed()

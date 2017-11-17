@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.preference.PreferenceCategory android:title="General">
+
+        <com.morcinek.workout.common.preference.TimePreference
+            android:defaultValue="60"
+            android:dialogTitle="Break Time (seconds)"
+            android:key="generalBreakTime"
+            android:title="Break Time" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+    <android.support.v7.preference.PreferenceCategory android:title="Notifications">
+
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="notificationVibrationEnabled"
+            android:summary="Enable vibration on break finished"
+            android:title="Vibration" />
+
+        <android.support.v7.preference.SeekBarPreference
+            android:defaultValue="60"
+            android:key="notificationVibrationTime"
+            android:max="10"
+            android:title="Vibration Time"
+            app:min="1"
+            app:showSeekBarValue="true" />
+
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="notificationSoundEnabled"
+            android:summary="Enable sound on break finished"
+            android:title="Sound Notification" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>
