@@ -13,7 +13,6 @@ import com.morcinek.workout.exercise.ExerciseActivity
 import com.morcinek.workout.settings.SettingsFragment
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class HomeActivity : AppCompatActivity() {
 
@@ -24,21 +23,17 @@ class HomeActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener {
-            startActivity<ExerciseActivity>()
-        }
+        fab.setOnClickListener { startActivity<ExerciseActivity>() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.home_menu, menu)
+        menuInflater.inflate(R.menu.home, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
-            startActivityFun<SingleFragmentActivity> {
-                putSerializableExtra(SettingsFragment::class.java)
-            }
+            startActivityFun<SingleFragmentActivity> { putSerializableExtra(SettingsFragment::class.java) }
             true
         }
         else -> super.onOptionsItemSelected(item)
