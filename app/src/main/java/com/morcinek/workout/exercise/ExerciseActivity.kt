@@ -12,7 +12,7 @@ import com.morcinek.workout.exercise.di.ExerciseModule
 import com.morcinek.workout.exercise.fragments.BreakFragment
 import com.morcinek.workout.exercise.fragments.BreakSplashFragment
 import com.morcinek.workout.exercise.fragments.SeriesFragment
-import kotlinx.android.synthetic.main.exercise.*
+import kotlinx.android.synthetic.main.content_fragment.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.yesButton
@@ -29,7 +29,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.exercise)
+        setContentView(R.layout.content_fragment)
         exerciseComponent.inject(this)
 
         setupToolbar()
@@ -70,7 +70,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
         if (exerciseDataManager.exerciseHasStarted) {
             alert(R.string.exercise_exit_message) {
                 yesButton { super.onBackPressed() }
-                noButton { }
+                noButton {  }
             }.show()
         } else {
             super.onBackPressed()

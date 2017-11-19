@@ -15,5 +15,7 @@
     <string name="stop">Stop</string>
     <string name="restart">Restart</string>
 
+    <string name="settings_label">Settings</string>
+
     <string name="breakTimeSummary">%d seconds</string>
 </resources>

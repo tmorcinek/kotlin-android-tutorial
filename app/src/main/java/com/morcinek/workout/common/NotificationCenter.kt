@@ -1,11 +1,16 @@
 package com.morcinek.workout.common
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.media.RingtoneManager
 import android.os.PowerManager
 import android.os.Vibrator
+import com.morcinek.workout.settings.soundEnabled
+import com.morcinek.workout.settings.vibrationEnabled
+import com.morcinek.workout.settings.vibrationValue
 
-class NotificationCenter(private val context: Context, private val vibrator: Vibrator, private val powerManager: PowerManager) {
+class NotificationCenter(private val context: Context, private val vibrator: Vibrator,
+                         private val powerManager: PowerManager, private val sharedPreferences: SharedPreferences) {
 
     private val flags: Int
         get() = PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP
@@ -15,16 +20,19 @@ class NotificationCenter(private val context: Context, private val vibrator: Vib
     }
 
     fun sendNotifications() {
-        // Ringtone
-        ringtone.play()
+        if (sharedPreferences.soundEnabled) {
+            ringtone.play()
+        }
 
-        // Vibration
-        vibrator.vibrate(500)
+        if (sharedPreferences.vibrationEnabled) {
+            vibrator.vibrate(vibrationTime())
+        }
 
-        // Unlock Screen
         powerManager.newWakeLock(flags, javaClass.name).apply {
             acquire()
             release()
         }
     }
+
+    private fun vibrationTime() = sharedPreferences.vibrationValue * 200L
 }

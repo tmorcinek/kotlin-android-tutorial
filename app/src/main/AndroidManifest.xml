@@ -31,6 +31,9 @@
             android:name=".exercise.ExerciseActivity"
             android:label="@string/exercise_label"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".common.fragment.SingleFragmentActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

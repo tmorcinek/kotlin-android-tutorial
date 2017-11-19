@@ -6,6 +6,7 @@ import android.os.PowerManager
 import android.os.Vibrator
 import dagger.Module
 import dagger.Provides
+import org.jetbrains.anko.defaultSharedPreferences
 import javax.inject.Singleton
 
 @Module
@@ -21,4 +22,8 @@ class AndroidModule(private val application: Application) {
     @Provides
     @Singleton
     fun provideVibrator() = application.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences() = application.defaultSharedPreferences
 }

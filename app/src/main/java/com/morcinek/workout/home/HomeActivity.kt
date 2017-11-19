@@ -6,7 +6,11 @@ import android.view.Menu
 import android.view.MenuItem
 import com.morcinek.workout.R
 import com.morcinek.workout.common.di.component
+import com.morcinek.workout.common.fragment.SingleFragmentActivity
+import com.morcinek.workout.common.utils.putSerializableExtra
+import com.morcinek.workout.common.utils.startActivityFun
 import com.morcinek.workout.exercise.ExerciseActivity
+import com.morcinek.workout.settings.SettingsFragment
 import kotlinx.android.synthetic.main.home.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -32,7 +36,9 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
-            toast("Settings Action")
+            startActivityFun<SingleFragmentActivity> {
+                putSerializableExtra(SettingsFragment::class.java)
+            }
             true
         }
         else -> super.onOptionsItemSelected(item)

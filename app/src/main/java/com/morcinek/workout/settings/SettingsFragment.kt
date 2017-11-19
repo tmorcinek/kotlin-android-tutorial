@@ -8,10 +8,16 @@ import android.support.v7.preference.PreferenceFragmentCompat
 import com.morcinek.workout.R
 import com.morcinek.workout.common.preference.TimePreference
 import com.morcinek.workout.common.preference.TimePreferenceDialogFragmentCompat
+import com.morcinek.workout.common.utils.setTitle
 import org.jetbrains.anko.bundleOf
 
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setTitle(R.string.settings_label)
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
@@ -20,39 +26,38 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         updateNotificationVibrationTime(preferenceManager.sharedPreferences)
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference?) {
-        if (preference is TimePreference) {
-            showDialogFragment(TimePreferenceDialogFragmentCompat().apply {
-                arguments = bundleOf(
-                        TimePreferenceDialogFragmentCompat.ARG_KEY to preference.getKey(),
-                        TimePreferenceDialogFragmentCompat.ARG_MIN to 10,
-                        TimePreferenceDialogFragmentCompat.ARG_MAX to 200,
-                        TimePreferenceDialogFragmentCompat.ARG_INCREMENT to 5
-                )
-            })
-        } else {
-            super.onDisplayPreferenceDialog(preference)
-        }
-    }
+    override fun onDisplayPreferenceDialog(preference: Preference?) =
+            if (preference is TimePreference) {
+                showDialogFragment(TimePreferenceDialogFragmentCompat().apply {
+                    arguments = bundleOf(
+                            TimePreferenceDialogFragmentCompat.ARG_KEY to preference.getKey(),
+                            TimePreferenceDialogFragmentCompat.ARG_MIN to 10,
+                            TimePreferenceDialogFragmentCompat.ARG_MAX to 200,
+                            TimePreferenceDialogFragmentCompat.ARG_INCREMENT to 5
+                    )
+                })
+            } else {
+                super.onDisplayPreferenceDialog(preference)
+            }
 
     private fun showDialogFragment(dialogFragment: DialogFragment) {
         dialogFragment.setTargetFragment(this, 0)
-        dialogFragment.show(this.fragmentManager, "android.support.v7.preference" + ".PreferenceFragment.DIALOG")
+        dialogFragment.show(this.fragmentManager, "android.support.v7.preference.PreferenceFragment.DIALOG")
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        when (key){
-            "notificationVibrationEnabled" -> updateNotificationVibrationTime(sharedPreferences)
-            "generalBreakTime" -> updateGeneralBreakTime(sharedPreferences)
+        when (key) {
+            VIBRATION_ENABLED -> updateNotificationVibrationTime(sharedPreferences)
+            BREAK_TIME -> updateGeneralBreakTime(sharedPreferences)
         }
     }
 
     private fun updateGeneralBreakTime(sharedPreferences: SharedPreferences?) {
-        preferenceScreen.findPreference("generalBreakTime").summary = getString(R.string.breakTimeSummary, sharedPreferences!!.getInt("generalBreakTime", 0))
+        preferenceScreen.findPreference(BREAK_TIME).summary = getString(R.string.breakTimeSummary, sharedPreferences?.breakTime)
     }
 
     private fun updateNotificationVibrationTime(sharedPreferences: SharedPreferences?) {
-        preferenceScreen.findPreference("notificationVibrationTime").isEnabled = sharedPreferences!!.getBoolean("notificationVibrationEnabled", false)
+        preferenceScreen.findPreference(VIBRATION_VALUE).isEnabled = sharedPreferences!!.vibrationEnabled
     }
 
     override fun onResume() {

@@ -17,21 +17,20 @@
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="notificationVibrationEnabled"
-            android:summary="Enable vibration on break finished"
+            android:summary="Enable vibration when break finishes"
             android:title="Vibration" />
 
         <android.support.v7.preference.SeekBarPreference
-            android:defaultValue="60"
-            android:key="notificationVibrationTime"
+            android:defaultValue="3"
+            android:key="notificationVibrationValue"
             android:max="10"
             android:title="Vibration Time"
-            app:min="1"
-            app:showSeekBarValue="true" />
+            app:min="1" />
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="notificationSoundEnabled"
-            android:summary="Enable sound on break finished"
+            android:summary="Enable sound when break finishes"
             android:title="Sound Notification" />
 
     </android.support.v7.preference.PreferenceCategory>

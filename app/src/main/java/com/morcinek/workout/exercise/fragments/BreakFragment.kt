@@ -20,7 +20,7 @@ class BreakFragment : BaseFragment() {
     @Inject lateinit var notificationCenter: NotificationCenter
 
     private val breakIntervalInMillis: Long
-        get() = exerciseDataManager.exerciseData.breakIntervalSeconds * DateUtils.SECOND_IN_MILLIS
+        get() = exerciseDataManager.breakIntervalSeconds * DateUtils.SECOND_IN_MILLIS
 
     private val timer by lazy {
         FunctionalCountDownTimer(breakIntervalInMillis, 100)

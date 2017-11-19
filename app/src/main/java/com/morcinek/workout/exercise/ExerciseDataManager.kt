@@ -1,8 +1,13 @@
 package com.morcinek.workout.exercise
 
-class ExerciseDataManager {
+import android.content.SharedPreferences
+import com.morcinek.workout.settings.breakTime
+
+class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
 
     var exerciseData: ExerciseData = ExerciseData()
+    val breakIntervalSeconds: Long
+        get() = sharedPreferences.breakTime.toLong()
 
     var delegate: Delegate? = null
         set(value) {
