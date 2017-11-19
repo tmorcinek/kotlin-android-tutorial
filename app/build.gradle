@@ -44,6 +44,7 @@ ext.versions = [
         anko    : '0.10.1',
         dagger  : '2.12',
         support : '26.+',
+        firebase: '11.6.0',
 ]
 
 dependencies {
@@ -59,6 +60,9 @@ dependencies {
     compile "com.android.support:design:$versions.support"
     compile "com.android.support:preference-v14:$versions.support"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile "com.google.firebase:firebase-core:$versions.firebase"
+    compile "com.google.firebase:firebase-crash:$versions.firebase"
 
     testCompile 'junit:junit:4.12'
 }
