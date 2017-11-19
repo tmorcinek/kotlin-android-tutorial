@@ -18,4 +18,14 @@
     <string name="settings_label">Settings</string>
 
     <string name="breakTimeSummary">%d seconds</string>
+
+    <string name="preference_general_title">General</string>
+    <string name="preference_notifications_title">Notifications</string>
+    <string name="preference_notification_vibration_title">Vibration</string>
+    <string name="preference_notification_vibration_summary">Enable vibration when break finishes</string>
+    <string name="preference_notification_vibration_value_title">Vibration Time</string>
+    <string name="preference_notification_sound_title">Sound Notification</string>
+    <string name="preference_notification_sound_summary">Enable sound when break finishes</string>
+    <string name="preference_general_break_time_title">Break Time</string>
+    <string name="preference_general_break_time_dialog_title">Break Time (seconds)</string>
 </resources>

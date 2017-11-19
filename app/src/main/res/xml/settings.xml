@@ -2,36 +2,36 @@
 <android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.preference.PreferenceCategory android:title="General">
+    <android.support.v7.preference.PreferenceCategory android:title="@string/preference_general_title">
 
         <com.morcinek.workout.common.preference.TimePreference
             android:defaultValue="60"
-            android:dialogTitle="Break Time (seconds)"
+            android:dialogTitle="@string/preference_general_break_time_dialog_title"
             android:key="generalBreakTime"
-            android:title="Break Time" />
+            android:title="@string/preference_general_break_time_dialog_title" />
 
     </android.support.v7.preference.PreferenceCategory>
 
-    <android.support.v7.preference.PreferenceCategory android:title="Notifications">
+    <android.support.v7.preference.PreferenceCategory android:title="@string/preference_notifications_title">
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="notificationVibrationEnabled"
-            android:summary="Enable vibration when break finishes"
-            android:title="Vibration" />
+            android:summary="@string/preference_notification_vibration_summary"
+            android:title="@string/preference_notification_vibration_title" />
 
         <android.support.v7.preference.SeekBarPreference
             android:defaultValue="3"
             android:key="notificationVibrationValue"
             android:max="10"
-            android:title="Vibration Time"
+            android:title="@string/preference_notification_vibration_value_title"
             app:min="1" />
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="notificationSoundEnabled"
-            android:summary="Enable sound when break finishes"
-            android:title="Sound Notification" />
+            android:summary="@string/preference_notification_sound_summary"
+            android:title="@string/preference_notification_sound_title" />
 
     </android.support.v7.preference.PreferenceCategory>
 
