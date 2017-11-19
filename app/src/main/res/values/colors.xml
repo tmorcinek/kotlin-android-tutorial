@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorAccentDark">#D60465</color>
+    <color name="colorPrimary">#2374AB</color>
+    <color name="colorPrimaryDark">#1A557D</color>
+    <color name="colorAccent">#FF8484</color>
+    <color name="colorAccentDark">#D16D6D</color>
 
     <color name="background">#FFFFFF</color>
-    <color name="backgroundGray">#FEFEFE</color>
+    <color name="backgroundGray">#D6FFF6</color>
 
     <!-- dark text colors -->
     <color name="text">#DD000000</color>
@@ -17,4 +17,7 @@
     <color name="textWhite">#FFFFFF</color>
     <color name="textWhiteSecondary">#B2FFFFFF</color>
     <color name="textWhiteDisabled">#4CFFFFFF</color>
+
+    <color name="colorPaletteLight">#4DCCBD</color>
+    <color name="colorPaletteDark">#104259</color>
 </resources>
