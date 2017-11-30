@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.morcinek.kotlin.adapter.SectionRecyclerViewAdapter
 import com.morcinek.workout.R
+import com.morcinek.workout.common.di.component
 import com.morcinek.workout.common.firebase.data.DataProvider
 import com.morcinek.workout.common.fragment.BaseFragment
 import com.morcinek.workout.core.data.exercises.ExerciseDataModel
@@ -28,7 +29,7 @@ class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataMode
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        exerciseComponent.inject(this)
+        component.inject(this)
 
         setupRecyclerView()
         exercisesProvider.delegate = this
