@@ -5,14 +5,12 @@ import android.view.View
 import android.widget.NumberPicker
 import com.morcinek.workout.R
 
-class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
+const val ARG_KEY = "key"
+const val ARG_MIN = "min"
+const val ARG_MAX = "max"
+const val ARG_INCREMENT = "increment"
 
-    companion object {
-        const val ARG_KEY = "key"
-        const val ARG_MIN = "min"
-        const val ARG_MAX = "max"
-        const val ARG_INCREMENT = "increment"
-    }
+class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
 
     private lateinit var mTimePicker: NumberPicker
 

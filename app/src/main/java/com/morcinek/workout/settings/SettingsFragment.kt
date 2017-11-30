@@ -6,8 +6,7 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
 import com.morcinek.workout.R
-import com.morcinek.workout.common.preference.TimePreference
-import com.morcinek.workout.common.preference.TimePreferenceDialogFragmentCompat
+import com.morcinek.workout.common.preference.*
 import com.morcinek.workout.common.utils.setTitle
 import org.jetbrains.anko.bundleOf
 
@@ -30,10 +29,10 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             if (preference is TimePreference) {
                 showDialogFragment(TimePreferenceDialogFragmentCompat().apply {
                     arguments = bundleOf(
-                            TimePreferenceDialogFragmentCompat.ARG_KEY to preference.getKey(),
-                            TimePreferenceDialogFragmentCompat.ARG_MIN to 10,
-                            TimePreferenceDialogFragmentCompat.ARG_MAX to 200,
-                            TimePreferenceDialogFragmentCompat.ARG_INCREMENT to 5
+                            ARG_KEY to preference.getKey(),
+                            ARG_MIN to 10,
+                            ARG_MAX to 200,
+                            ARG_INCREMENT to 5
                     )
                 })
             } else {
