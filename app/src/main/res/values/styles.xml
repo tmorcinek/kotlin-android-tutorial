@@ -22,4 +22,12 @@
         <item name="android:textSize">40sp</item>
     </style>
 
+    <style name="RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:smoothScrollbar">true</item>
+    </style>
+
 </resources>

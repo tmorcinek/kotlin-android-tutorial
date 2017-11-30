@@ -67,6 +67,10 @@ dependencies {
 
     compile "com.google.firebase:firebase-core:$versions.firebase"
     compile "com.google.firebase:firebase-crash:$versions.firebase"
+    compile "com.google.firebase:firebase-auth:$versions.firebase"
+    compile "com.google.firebase:firebase-database:$versions.firebase"
+
+    compile 'com.github.tmorcinek:kotlin-section-adapter:1.0.3'
 
     testCompile 'junit:junit:4.12'
 }
