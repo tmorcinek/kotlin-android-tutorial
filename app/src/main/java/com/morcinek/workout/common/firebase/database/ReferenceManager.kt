@@ -12,8 +12,7 @@ class ReferenceManager(val firebaseAuth: FirebaseAuth, val firebaseDatabase: Fir
     private val userId: String
         get() = firebaseAuth.currentUser!!.uid
 
-    private fun userReference() = firebaseDatabase.getReference(userId)
-
-    fun exercises() = userReference()
+    fun exercises() = firebaseDatabase.getReference("data")
+            .child(userId)
             .child("exercises")
 }
