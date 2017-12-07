@@ -8,9 +8,10 @@ import com.morcinek.workout.R
 import com.morcinek.workout.common.di.component
 import com.morcinek.workout.common.firebase.data.DataProvider
 import com.morcinek.workout.common.fragment.BaseFragment
+import com.morcinek.workout.common.utils.dateFormat
+import com.morcinek.workout.common.utils.formatWith
 import com.morcinek.workout.core.data.exercises.ExerciseDataModel
 import com.morcinek.workout.core.data.exercises.ExercisesProvider
-import com.morcinek.workout.exercise.exerciseComponent
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewAdapter
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewModel
 import kotlinx.android.synthetic.main.recycler_view.*
@@ -21,6 +22,8 @@ import javax.inject.Inject
 class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataModel> {
 
     override val layoutResourceId = R.layout.recycler_view
+
+    private val dateFormat by lazy { dateFormat() }
 
     @Inject lateinit var exercisesProvider: ExercisesProvider
 
@@ -42,10 +45,10 @@ class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataMode
     }
 
     override fun success(values: List<Pair<String, ExerciseDataModel>>) = adapter.setList(values.map {
-        ExerciseViewModel(it.first, it.second.name, it.second.category, formatDate(it.second.date))
+        ExerciseViewModel(it.first, it.second.name, it.second.category ?: "", formatDate(it.second.getDate()))
     })
 
-    private fun formatDate(date: Calendar) = date.toString()
+    private fun formatDate(date: Calendar) = date.formatWith(dateFormat)
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(activity)

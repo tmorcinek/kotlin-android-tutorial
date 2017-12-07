@@ -6,9 +6,13 @@ abstract class DataManager {
 
     protected abstract val reference: DatabaseReference
 
-    fun add(data: DataModel) = reference.push().updateChildren(data.toMap())
+    var key: String? = null
 
-    fun update(key: String, data: DataModel) = reference.child(key).updateChildren(data.toMap())
+    private val objectReference by lazy { if (key != null) reference.child(key) else reference.push() }
 
-    fun remove(key: String) = reference.child(key).removeValue()
+    fun update(data: DataModel) = objectReference.updateChildren(data.toMap())
+
+    fun remove() = objectReference.removeValue()
+
+    fun get() = objectReference
 }

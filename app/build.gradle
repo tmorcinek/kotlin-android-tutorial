@@ -45,6 +45,9 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE'
     }
+    applicationVariants.all { variant ->
+        variant.buildConfigField 'String', 'DATE_FORMAT', '"dd/MM/yyyy"'
+    }
 }
 
 ext.versions = [

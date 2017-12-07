@@ -13,4 +13,6 @@
     <dimen name="progress_bar_size">260dp</dimen>
     <dimen name="progress_bar_text">68sp</dimen>
 
+    <dimen name="edit_text_font">22sp</dimen>
+
 </resources>

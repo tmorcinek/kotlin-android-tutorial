@@ -6,13 +6,21 @@ import com.morcinek.workout.common.firebase.data.DataModel
 import java.util.*
 
 @IgnoreExtraProperties
-class ExerciseDataModel(val name: String, val category: String, val date: Calendar = Calendar.getInstance(), val numberOfSeries: Int) : DataModel {
+class ExerciseDataModel(var name: String = "", var category: String? = null, var timeInMillis: Long = Calendar.getInstance().timeInMillis, var numberOfSeries: Int = 1) : DataModel {
 
     @Exclude
     override fun toMap() = mapOf(
             "name" to name,
             "category" to category,
-            "date" to date,
+            "timeInMillis" to timeInMillis,
             "numberOfSeries" to numberOfSeries
     )
+
+    @Exclude
+    fun getDate() = Calendar.getInstance().apply { timeInMillis = this@ExerciseDataModel.timeInMillis }
+
+    @Exclude
+    fun setDate(calendar: Calendar) {
+        timeInMillis = calendar.timeInMillis
+    }
 }
