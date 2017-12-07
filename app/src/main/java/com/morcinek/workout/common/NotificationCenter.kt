@@ -29,8 +29,7 @@ class NotificationCenter(private val context: Context, private val vibrator: Vib
         }
 
         powerManager.newWakeLock(flags, javaClass.name).apply {
-            acquire()
-            release()
+            acquire(1000)
         }
     }
 
