@@ -54,7 +54,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
         exerciseComponent.inject(this)
         setupToolbar()
 
-        exercisesManager.update(exerciseDataModel).addOnCompleteListener(this)
+//        exercisesManager.update(exerciseDataModel).addOnCompleteListener(this)
     }
 
     private fun setupToolbar() {
