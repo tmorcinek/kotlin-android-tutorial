@@ -45,7 +45,7 @@ class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataMode
     }
 
     override fun success(values: List<Pair<String, ExerciseDataModel>>) = adapter.setList(values.map {
-        ExerciseViewModel(it.first, it.second.name, it.second.category ?: "", formatDate(it.second.getDate()))
+        ExerciseViewModel(it.first, it.second.name, it.second.category ?: "", formatDate(it.second.date))
     })
 
     private fun formatDate(date: Calendar) = date.formatWith(dateFormat)

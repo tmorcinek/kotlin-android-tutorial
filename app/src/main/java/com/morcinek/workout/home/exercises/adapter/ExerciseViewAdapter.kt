@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.exercises_item.view.*
 class ExerciseViewAdapter : SectionRecyclerViewAdapter.SectionViewAdapter<ExerciseViewModel, ExerciseViewAdapter.ViewHolder> {
 
     override fun onBindViewHolder(holder: ViewHolder, item: ExerciseViewModel, position: Int) {
-        holder.name.text = item.date
+        holder.name.text = item.name
         holder.category.text = item.category
         holder.date.text = item.date
     }

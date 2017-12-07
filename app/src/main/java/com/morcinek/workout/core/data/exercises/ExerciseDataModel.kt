@@ -16,11 +16,9 @@ class ExerciseDataModel(var name: String = "", var category: String? = null, var
             "numberOfSeries" to numberOfSeries
     )
 
-    @Exclude
-    fun getDate() = Calendar.getInstance().apply { timeInMillis = this@ExerciseDataModel.timeInMillis }
-
-    @Exclude
-    fun setDate(calendar: Calendar) {
-        timeInMillis = calendar.timeInMillis
-    }
+    var date: Calendar
+        @Exclude get() = Calendar.getInstance().apply { timeInMillis = this@ExerciseDataModel.timeInMillis }
+        @Exclude set(value) {
+            timeInMillis = value.timeInMillis
+        }
 }
