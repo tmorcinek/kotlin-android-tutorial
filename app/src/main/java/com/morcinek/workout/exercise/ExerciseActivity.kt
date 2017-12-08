@@ -1,5 +1,6 @@
 package com.morcinek.workout.exercise
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -16,6 +17,7 @@ import com.morcinek.workout.common.fragment.ContentFragmentManager
 import com.morcinek.workout.common.fragment.SingleFragmentActivity
 import com.morcinek.workout.common.utils.putSerializableExtra
 import com.morcinek.workout.common.utils.startActivityFun
+import com.morcinek.workout.common.utils.stopService
 import com.morcinek.workout.core.data.exercises.ExerciseDataModel
 import com.morcinek.workout.core.data.exercises.ExercisesManager
 import com.morcinek.workout.exercise.di.ExerciseComponent
@@ -55,6 +57,11 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
         setupToolbar()
 
 //        exercisesManager.update(exerciseDataModel).addOnCompleteListener(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService<TimerService>()
     }
 
     private fun setupToolbar() {

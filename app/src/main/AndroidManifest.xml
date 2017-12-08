@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service android:name=".exercise.TimerService" />
+
         <activity
             android:name=".splash.SplashActivity"
             android:theme="@style/AppTheme.Splash">
