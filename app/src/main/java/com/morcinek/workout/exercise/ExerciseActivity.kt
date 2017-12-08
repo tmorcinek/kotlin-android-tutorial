@@ -1,6 +1,9 @@
 package com.morcinek.workout.exercise
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -11,6 +14,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.morcinek.workout.R
+import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.di.component
 import com.morcinek.workout.common.fragment.BaseFragment
 import com.morcinek.workout.common.fragment.ContentFragmentManager
@@ -39,6 +43,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
     @Inject lateinit var contentFragmentManager: ContentFragmentManager
     @Inject lateinit var exerciseDataManager: ExerciseDataManager
     @Inject lateinit var exercisesManager: ExercisesManager
+    @Inject lateinit var notificationCenter: NotificationCenter
 
     val exerciseComponent by lazy {
         component.add(ExerciseModule(this))
@@ -56,11 +61,13 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
         exerciseComponent.inject(this)
         setupToolbar()
 
+        registerReceiver(timerReceiver, IntentFilter(TIMER_SERVICE_FINISH))
 //        exercisesManager.update(exerciseDataModel).addOnCompleteListener(this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        unregisterReceiver(timerReceiver)
         stopService<TimerService>()
     }
 
@@ -95,6 +102,16 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
     override fun onPause() {
         super.onPause()
         exerciseDataManager.delegate = null
+    }
+
+    private val timerReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) = notifyTimerFinished()
+    }
+
+    private fun notifyTimerFinished() {
+        notificationCenter.sendNotifications()
+        exerciseDataManager.incrementSeriesNumber()
+        exerciseDataManager.showBreakSplash()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {

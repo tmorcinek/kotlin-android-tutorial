@@ -4,6 +4,7 @@ import com.morcinek.workout.common.di.modules.AndroidModule
 import com.morcinek.workout.common.di.modules.ApplicationModule
 import com.morcinek.workout.common.di.modules.DataModule
 import com.morcinek.workout.common.firebase.di.modules.FirebaseModule
+import com.morcinek.workout.exercise.TimerService
 import com.morcinek.workout.exercise.di.ExerciseComponent
 import com.morcinek.workout.exercise.di.ExerciseModule
 import com.morcinek.workout.home.HomeActivity
@@ -20,6 +21,8 @@ interface ApplicationComponent {
     fun inject(activity: SplashActivity)
 
     fun inject(fragment: ExercisesFragment)
+
+    fun inject(service: TimerService)
 
     fun add(exerciseModule: ExerciseModule): ExerciseComponent
 }

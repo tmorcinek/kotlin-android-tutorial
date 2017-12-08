@@ -1,54 +1,51 @@
 package com.morcinek.workout.exercise
 
-import android.app.IntentService
 import android.app.Service
 import android.content.Intent
-import android.os.IBinder
-import android.os.CountDownTimer
-import android.util.Log
+import android.content.SharedPreferences
+import android.text.format.DateUtils
+import com.morcinek.workout.common.FunctionalCountDownTimer
+import com.morcinek.workout.common.di.component
+import com.morcinek.workout.common.utils.put
+import com.morcinek.workout.settings.breakTime
+import javax.inject.Inject
 
 
-val COUNTDOWN_BR = "com.morcinek.workout.countdown_br"
+val TIMER_SERVICE_TICK = "com.morcinek.workout.TimerService.Tick"
+val TIMER_SERVICE_FINISH = "com.morcinek.workout.TimerService.Finish"
 
-class TimerService() : Service() {
+class TimerService : Service() {
 
-    private val TAG = "BroadcastService"
+    @Inject lateinit var  sharedPreferences: SharedPreferences
 
+    private val breakIntervalInMillis: Long
+        get() = sharedPreferences.breakTime * DateUtils.SECOND_IN_MILLIS
 
-    var bi = Intent(COUNTDOWN_BR)
-    var cdt: CountDownTimer? = null
+    private var timer : FunctionalCountDownTimer? = null
 
     override fun onCreate() {
         super.onCreate()
-
-        Log.i(TAG, "Starting timer...")
-
-        cdt = object : CountDownTimer(30000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-
-                Log.i(TAG, "Countdown seconds remaining: " + millisUntilFinished / 1000)
-                bi.putExtra("countdown", millisUntilFinished)
-                sendBroadcast(bi)
-            }
-
-            override fun onFinish() {
-                Log.i(TAG, "Timer finished")
-                sendBroadcast(bi)
-            }
-        }
-        cdt!!.start()
+        component.inject(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.i(TAG, "onStartCommand...")
+        if (timer == null) {
+            timer = FunctionalCountDownTimer(breakIntervalInMillis, 100).apply {
+                onTick { sendBroadcast(Intent(TIMER_SERVICE_TICK).apply { put(it) }) }
+                onFinish {
+                    sendBroadcast(Intent(TIMER_SERVICE_FINISH))
+                    timer = null
+                }
+                start()
+            }
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
-        cdt!!.cancel()
+        timer?.cancel()
         super.onDestroy()
     }
 
     override fun onBind(intent: Intent?) = null
-
 }

@@ -14,3 +14,6 @@ fun Intent.put(value: String) = putExtra(String::class.java.name, value)
 
 fun Intent.getFloat() = getFloatExtra(Float::class.java.name, 0F)
 fun Intent.put(value: Float) = putExtra(Float::class.java.name, value)
+
+fun Intent.getLong() = getLongExtra(Long::class.java.name, 0L)
+fun Intent.put(value: Long) = putExtra(Long::class.java.name, value)
