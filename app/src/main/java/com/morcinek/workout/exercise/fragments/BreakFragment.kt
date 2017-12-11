@@ -1,14 +1,12 @@
 package com.morcinek.workout.exercise.fragments
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.View
 import com.morcinek.workout.R
 import com.morcinek.workout.common.fragment.BaseFragment
+import com.morcinek.workout.common.utils.broadcastReceiver
 import com.morcinek.workout.common.utils.getLong
 import com.morcinek.workout.exercise.ExerciseDataManager
 import com.morcinek.workout.exercise.TIMER_SERVICE_TICK
@@ -59,7 +57,7 @@ class BreakFragment : BaseFragment() {
         progressBar.progress = (breakIntervalInMillis - progress).toInt()
     }
 
-    private val broadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) = updateProgress(intent.getLong())
+    private val broadcastReceiver = broadcastReceiver {
+        updateProgress(it.getLong())
     }
 }

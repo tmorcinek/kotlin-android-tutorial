@@ -1,8 +1,5 @@
 package com.morcinek.workout.exercise
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -19,6 +16,7 @@ import com.morcinek.workout.common.di.component
 import com.morcinek.workout.common.fragment.BaseFragment
 import com.morcinek.workout.common.fragment.ContentFragmentManager
 import com.morcinek.workout.common.fragment.SingleFragmentActivity
+import com.morcinek.workout.common.utils.broadcastReceiver
 import com.morcinek.workout.common.utils.putSerializableExtra
 import com.morcinek.workout.common.utils.startActivityFun
 import com.morcinek.workout.common.utils.stopService
@@ -104,11 +102,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
         exerciseDataManager.delegate = null
     }
 
-    private val timerReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) = notifyTimerFinished()
-    }
-
-    private fun notifyTimerFinished() {
+    private val timerReceiver = broadcastReceiver {
         notificationCenter.sendNotifications()
         exerciseDataManager.incrementSeriesNumber()
         exerciseDataManager.showBreakSplash()
