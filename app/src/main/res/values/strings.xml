@@ -19,6 +19,8 @@
     <string name="break_splash_text">Break has finished</string>
     <string name="break_splash_series_text">Start series: %d</string>
 
+    <string name="exercise_item_name">(%d series) %s</string>
+
     <string name="stop">Stop</string>
     <string name="restart">Restart</string>
 

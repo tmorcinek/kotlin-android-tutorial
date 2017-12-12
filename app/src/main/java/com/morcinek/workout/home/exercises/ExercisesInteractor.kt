@@ -1,6 +1,8 @@
 package com.morcinek.workout.home.exercises
 
+import android.content.Context
 import android.text.format.DateUtils
+import com.morcinek.workout.R
 import com.morcinek.workout.common.firebase.data.DataProvider
 import com.morcinek.workout.common.firebase.data.InteractorDelegate
 import com.morcinek.workout.common.utils.dayOfWeekFormat
@@ -11,7 +13,7 @@ import com.morcinek.workout.core.data.exercises.ExercisesProvider
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewModel
 import java.util.*
 
-class ExercisesInteractor(private val exercisesProvider: ExercisesProvider) : DataProvider.Delegate<ExerciseDataModel> {
+class ExercisesInteractor(private val context: Context, private val exercisesProvider: ExercisesProvider) : DataProvider.Delegate<ExerciseDataModel> {
 
     private val timeFormat by lazy { timeFormat() }
     private val dayOfWeekFormat by lazy { dayOfWeekFormat() }
@@ -24,16 +26,16 @@ class ExercisesInteractor(private val exercisesProvider: ExercisesProvider) : Da
         exercisesProvider.register()
     }
 
-    fun unregister() {
-        exercisesProvider.unregister()
-    }
+    fun unregister() = exercisesProvider.unregister()
 
     override fun failed(errorMessage: String) = delegate.failed(errorMessage)
 
     override fun success(values: List<Pair<String, ExerciseDataModel>>) = delegate.success(values.sortedByDescending { it.second.timeInMillis }.map {
-        val date = it.second.date
-        ExerciseViewModel(it.first, it.second.name, it.second.category ?: "", dateFormat(date), timeFormat(date))
+        val exerciseDataModel = it.second
+        ExerciseViewModel(it.first, exerciseDataModel.name, exerciseDataModel.category ?: "", dateFormat(exerciseDataModel.date), timeText(exerciseDataModel))
     })
+
+    private fun timeText(exerciseDataModel: ExerciseDataModel) = context.getString(R.string.exercise_item_name, exerciseDataModel.numberOfSeries, timeFormat(exerciseDataModel.date))
 
     private fun dateFormat(date: Calendar) = "${relativeDateFormat(date)}, ${dayOfWeekFormat(date)}"
 

@@ -18,6 +18,8 @@
     <string name="break_splash_text">Przerwa się skończyła</string>
     <string name="break_splash_series_text">Zacznij serię: %d</string>
 
+    <string name="exercise_item_name">(%d serii) %s</string>
+
     <string name="stop">Stop</string>
     <string name="restart">Restart</string>
 

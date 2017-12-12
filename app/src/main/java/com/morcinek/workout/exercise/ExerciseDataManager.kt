@@ -8,7 +8,13 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
 
     var exerciseData: ExerciseData = ExerciseData()
 
-    lateinit var exerciseDataModel : ExerciseDataModel
+    lateinit var exerciseDataModel: ExerciseDataModel
+
+    var numberOfSeries: Int
+        get() = exerciseDataModel.numberOfSeries
+        set(value) {
+            exerciseDataModel.numberOfSeries = value
+        }
 
     val breakIntervalSeconds: Long
         get() = sharedPreferences.breakTime.toLong()
@@ -20,7 +26,7 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
         }
 
     fun incrementSeriesNumber() {
-        exerciseData.seriesNumber += 1
+        numberOfSeries += 1
     }
 
     fun showNew() {
@@ -58,7 +64,7 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
     }
 
     val exerciseHasStarted: Boolean
-        get() = (exerciseData.seriesNumber > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.New)
+        get() = (numberOfSeries > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.New)
 
     val isEditable: Boolean
         get() = exerciseData.seriesState != ExerciseData.ExerciseState.New

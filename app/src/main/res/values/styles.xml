@@ -36,4 +36,28 @@
         <item name="android:textSize">@dimen/edit_text_font</item>
     </style>
 
+    <style name="ItemText">
+        <item name="android:lines">1</item>
+        <item name="android:textColor">@color/textSecondary</item>
+        <item name="android:textSize">@dimen/item_text_font</item>
+    </style>
+
+    <style name="ItemTextSecondary">
+        <item name="android:lines">1</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/text_secondary_font</item>
+    </style>
+
+    <style name="ItemDate">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/text_small_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ItemTime">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/item_text_font</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
 </resources>

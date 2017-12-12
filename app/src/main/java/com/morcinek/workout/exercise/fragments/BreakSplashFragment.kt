@@ -19,7 +19,7 @@ class BreakSplashFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         exerciseComponent.inject(this)
 
-        breakSplashText.text = getString(R.string.break_splash_series_text, exerciseDataManager.exerciseData.seriesNumber)
+        breakSplashText.text = getString(R.string.break_splash_series_text, exerciseDataManager.numberOfSeries)
         view?.setOnClickListener {
             exerciseDataManager.showSeries()
         }

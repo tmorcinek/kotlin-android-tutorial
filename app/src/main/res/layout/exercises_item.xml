@@ -19,10 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/item_text_font"
-            android:textStyle="italic"
-            android:text="12:34" />
+            style="@style/ItemTime" />
 
         <TextView
             android:id="@+id/date"
@@ -31,34 +28,25 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/time"
-            android:textSize="@dimen/text_small_font"
             android:layout_marginTop="@dimen/view_padding"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:text="today" />
+            style="@style/ItemDate" />
 
         <TextView
             android:id="@+id/name"
-            android:textColor="@color/text"
+            style="@style/ItemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/item_text_font"
-            android:layout_toLeftOf="@id/time"
             android:layout_marginRight="@dimen/view_padding"
-            android:lines="1"
-            android:text="Name" />
+            android:layout_toLeftOf="@id/time" />
 
         <TextView
             android:id="@+id/category"
-            android:textColor="@color/textSecondary"
+            style="@style/ItemTextSecondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/time"
             android:layout_below="@id/name"
-            android:textSize="@dimen/text_secondary_font"
             android:layout_marginTop="@dimen/view_padding"
-            android:lines="1"
-            android:text="Category" />
+            android:layout_toLeftOf="@id/time" />
 
 
     </RelativeLayout>

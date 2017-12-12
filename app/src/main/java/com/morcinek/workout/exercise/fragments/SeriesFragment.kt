@@ -19,7 +19,7 @@ class SeriesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         exerciseComponent.inject(this)
 
-        seriesNumberText.text = "${exerciseDataManager.exerciseData.seriesNumber}"
+        seriesNumberText.text = "${exerciseDataManager.numberOfSeries}"
         breakButton.setOnClickListener { exerciseDataManager.showBreak() }
         finishButton.setOnClickListener { activity.onBackPressed() }
     }
