@@ -33,7 +33,7 @@
     <style name="DefaultEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/edit_text_font</item>
+        <item name="android:textSize">@dimen/text_secondary_font</item>
     </style>
 
     <style name="ItemText">
@@ -58,6 +58,16 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/item_text_font</item>
         <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="HeaderTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/header_margin</item>
+        <item name="android:layout_marginRight">@dimen/header_margin</item>
+        <item name="android:layout_marginTop">@dimen/header_margin</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/header_font</item>
     </style>
 
 </resources>

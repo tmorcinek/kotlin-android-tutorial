@@ -5,6 +5,7 @@
     <dimen name="double_margin">32dp</dimen>
 
     <dimen name="view_padding">8dp</dimen>
+    <dimen name="header_margin">12dp</dimen>
     <dimen name="default_padding">16dp</dimen>
 
     <dimen name="title_margin">24dp</dimen>
@@ -18,5 +19,6 @@
     <dimen name="item_text_font">15sp</dimen>
     <dimen name="text_secondary_font">18sp</dimen>
     <dimen name="text_small_font">12sp</dimen>
+    <dimen name="header_font">13sp</dimen>
 
 </resources>
