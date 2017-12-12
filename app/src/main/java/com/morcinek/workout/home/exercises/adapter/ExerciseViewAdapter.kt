@@ -16,7 +16,7 @@ class ExerciseViewAdapter : SectionRecyclerViewAdapter.SectionViewAdapter<Exerci
 
     override fun onBindViewHolder(holder: ViewHolder, item: ExerciseViewModel, position: Int) {
         holder.name.text = item.name
-        holder.category.text = "Category"
+        holder.category.text = item.category
         holder.date.text = item.date
         holder.time.text = item.time
     }

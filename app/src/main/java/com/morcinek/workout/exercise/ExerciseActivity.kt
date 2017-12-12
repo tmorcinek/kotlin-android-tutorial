@@ -1,13 +1,10 @@
 package com.morcinek.workout.exercise
 
-import android.app.Dialog
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.morcinek.workout.R
 import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.di.component
@@ -23,7 +20,6 @@ import com.morcinek.workout.exercise.fragments.*
 import com.morcinek.workout.settings.SettingsFragment
 import kotlinx.android.synthetic.main.content_fragment.*
 import org.jetbrains.anko.alert
-import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
 
 class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
@@ -63,7 +59,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        menu?.findItem(R.id.action_edit)?.isVisible =  exerciseDataManager.isEditable
+        menu?.findItem(R.id.action_edit)?.isVisible = exerciseDataManager.isEditable
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -123,34 +119,23 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
     }
 
     private fun finishWithDelete() {
-        val progressDialog = indeterminateProgressDialog("") { }
-        exerciseManager.remove().addOnCompleteListener(onCompleteListener(progressDialog){
-            finish()
-        })
-//        exerciseManager.remove().addOnCompleteListener {
-//            progressDialog.dismiss()
-//            finish()
-//        }
+        exerciseManager.remove()
+        finish()
     }
 
     private fun saveAndFinish() {
-        exerciseManager.update(exerciseDataManager.exerciseDataModel).addOnCompleteListener { finish() }
-//        exerciseManager.update(exerciseDataManager.exerciseDataModel).addOnCompleteListener(object : OnCompleteListener<Void> {
-//            override fun onComplete(p0: Task<Void>) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//        })
+        exerciseManager.update(exerciseDataManager.exerciseDataModel)
+        finish()
     }
 }
 
 inline val BaseFragment.exerciseComponent: ExerciseComponent
     get() = (activity as ExerciseActivity).exerciseComponent
 
-fun <T> onCompleteListener(progressDialog: Dialog, function: () -> Any) = object : OnCompleteListener<T> {
-
-    override fun onComplete(p0: Task<T>) {
-        progressDialog.dismiss()
-        function()
-    }
-}
+//fun <T> onCompleteListener(progressDialog: Dialog, function: () -> Any) = object : OnCompleteListener<T> {
+//
+//    override fun onComplete(p0: Task<T>) {
+//        progressDialog.dismiss()
+//        function()
+//    }
+//}

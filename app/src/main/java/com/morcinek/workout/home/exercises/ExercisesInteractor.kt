@@ -30,7 +30,7 @@ class ExercisesInteractor(private val exercisesProvider: ExercisesProvider) : Da
 
     override fun failed(errorMessage: String) = delegate.failed(errorMessage)
 
-    override fun success(values: List<Pair<String, ExerciseDataModel>>) = delegate.success(values.map {
+    override fun success(values: List<Pair<String, ExerciseDataModel>>) = delegate.success(values.sortedByDescending { it.second.timeInMillis }.map {
         val date = it.second.date
         ExerciseViewModel(it.first, it.second.name, it.second.category ?: "", dateFormat(date), timeFormat(date))
     })
