@@ -2,14 +2,14 @@
 <resources>
     <string-array name="categories">
         <item></item>
-        <item>Chest</item>
-        <item>Back</item>
-        <item>Shoulders</item>
+        <item>Klatka</item>
+        <item>Plecy</item>
+        <item>Barki</item>
         <item>Biceps</item>
         <item>Triceps</item>
-        <item>Legs</item>
-        <item>Calves</item>
-        <item>Forearms</item>
-        <item>Abs</item>
+        <item>Nogi</item>
+        <item>Łydki</item>
+        <item>Przedramiona</item>
+        <item>Brzuch</item>
     </string-array>
 </resources>

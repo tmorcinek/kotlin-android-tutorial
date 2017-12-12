@@ -37,11 +37,11 @@ class ExercisesInteractor(private val context: Context, private val exercisesPro
 
     private fun timeText(exerciseDataModel: ExerciseDataModel) = context.getString(R.string.exercise_item_name, exerciseDataModel.numberOfSeries, timeFormat(exerciseDataModel.date))
 
+    private fun timeFormat(date: Calendar) = date.formatWith(timeFormat)
+
     private fun dateFormat(date: Calendar) = "${relativeDateFormat(date)}, ${dayOfWeekFormat(date)}"
 
     private fun dayOfWeekFormat(date: Calendar) = date.formatWith(dayOfWeekFormat)
-
-    private fun timeFormat(date: Calendar) = date.formatWith(timeFormat)
 
     private fun relativeDateFormat(date: Calendar)
             = DateUtils.getRelativeTimeSpanString(date.timeInMillis, Date().time, DateUtils.DAY_IN_MILLIS, DateUtils.FORMAT_SHOW_YEAR).toString()

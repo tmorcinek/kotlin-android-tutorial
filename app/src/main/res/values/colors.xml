@@ -6,7 +6,7 @@
     <color name="colorAccentDark">#D16D6D</color>
 
     <color name="background">#FFFFFF</color>
-    <color name="backgroundGray">#D6FFF6</color>
+    <color name="backgroundGray">#FEFEFE</color>
 
     <!-- dark text colors -->
     <color name="text">#DD000000</color>

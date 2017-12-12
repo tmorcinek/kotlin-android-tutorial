@@ -6,7 +6,7 @@ import com.morcinek.workout.common.firebase.data.DataModel
 import java.util.*
 
 @IgnoreExtraProperties
-class ExerciseDataModel(var name: String = "", var category: String? = null, var timeInMillis: Long = Calendar.getInstance().timeInMillis, var numberOfSeries: Int = 1) : DataModel {
+class ExerciseDataModel(var name: String = "", var category: String = "", var timeInMillis: Long = Calendar.getInstance().timeInMillis, var numberOfSeries: Int = 1) : DataModel {
 
     @Exclude
     override fun toMap() = mapOf(

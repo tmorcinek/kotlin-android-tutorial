@@ -56,7 +56,7 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
     interface Delegate {
         fun onStateChanged(exerciseState: ExerciseState)
     }
-    
+
     val isEditable: Boolean
         get() = exerciseState != ExerciseState.New
 }
