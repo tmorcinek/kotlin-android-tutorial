@@ -6,7 +6,7 @@ import com.morcinek.workout.settings.breakTime
 
 class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
 
-    var exerciseData: ExerciseData = ExerciseData()
+    var exerciseState: ExerciseState = ExerciseState.Loading
 
     lateinit var exerciseDataModel: ExerciseDataModel
 
@@ -30,42 +30,33 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
     }
 
     fun showNew() {
-        exerciseData.seriesState = ExerciseData.ExerciseState.New
+        exerciseState = ExerciseState.New
         notifyStateChanged()
     }
-
-    fun showLoading() {
-        exerciseData.seriesState = ExerciseData.ExerciseState.Loading
-        notifyStateChanged()
-    }
-
 
     fun showBreak() {
-        exerciseData.seriesState = ExerciseData.ExerciseState.Break
+        exerciseState = ExerciseState.Break
         notifyStateChanged()
     }
 
     fun showBreakSplash() {
-        exerciseData.seriesState = ExerciseData.ExerciseState.Splash
+        exerciseState = ExerciseState.Splash
         notifyStateChanged()
     }
 
     fun showSeries() {
-        exerciseData.seriesState = ExerciseData.ExerciseState.Series
+        exerciseState = ExerciseState.Series
         notifyStateChanged()
     }
 
     private fun notifyStateChanged() {
-        delegate?.onStateChanged(exerciseData.seriesState)
+        delegate?.onStateChanged(exerciseState)
     }
 
     interface Delegate {
-        fun onStateChanged(exerciseState: ExerciseData.ExerciseState)
+        fun onStateChanged(exerciseState: ExerciseState)
     }
-
-    val exerciseHasStarted: Boolean
-        get() = (numberOfSeries > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.New)
-
+    
     val isEditable: Boolean
-        get() = exerciseData.seriesState != ExerciseData.ExerciseState.New
+        get() = exerciseState != ExerciseState.New
 }

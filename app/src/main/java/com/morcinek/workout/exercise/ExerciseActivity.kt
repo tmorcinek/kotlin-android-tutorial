@@ -63,13 +63,13 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
         return super.onPrepareOptionsMenu(menu)
     }
 
-    override fun onStateChanged(exerciseState: ExerciseData.ExerciseState) {
+    override fun onStateChanged(exerciseState: ExerciseState) {
         contentFragmentManager.replaceFragment(when (exerciseState) {
-            ExerciseData.ExerciseState.Series -> SeriesFragment()
-            ExerciseData.ExerciseState.Break -> BreakFragment()
-            ExerciseData.ExerciseState.Splash -> BreakSplashFragment()
-            ExerciseData.ExerciseState.New -> NewFragment()
-            ExerciseData.ExerciseState.Loading -> LoadingFragment()
+            ExerciseState.Series -> SeriesFragment()
+            ExerciseState.Break -> BreakFragment()
+            ExerciseState.Splash -> BreakSplashFragment()
+            ExerciseState.New -> NewFragment()
+            ExerciseState.Loading -> LoadingFragment()
         })
         invalidateOptionsMenu()
     }
@@ -131,11 +131,3 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
 
 inline val BaseFragment.exerciseComponent: ExerciseComponent
     get() = (activity as ExerciseActivity).exerciseComponent
-
-//fun <T> onCompleteListener(progressDialog: Dialog, function: () -> Any) = object : OnCompleteListener<T> {
-//
-//    override fun onComplete(p0: Task<T>) {
-//        progressDialog.dismiss()
-//        function()
-//    }
-//}
