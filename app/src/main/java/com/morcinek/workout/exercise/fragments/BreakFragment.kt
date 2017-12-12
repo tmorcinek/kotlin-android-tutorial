@@ -8,6 +8,7 @@ import com.morcinek.workout.R
 import com.morcinek.workout.common.fragment.BaseFragment
 import com.morcinek.workout.common.utils.broadcastReceiver
 import com.morcinek.workout.common.utils.getLong
+import com.morcinek.workout.common.utils.stopService
 import com.morcinek.workout.exercise.ExerciseDataManager
 import com.morcinek.workout.exercise.TIMER_SERVICE_TICK
 import com.morcinek.workout.exercise.TimerService
@@ -36,6 +37,7 @@ class BreakFragment : BaseFragment() {
             exerciseDataManager.showSeries()
         }
         cancelButton.setOnClickListener {
+            activity.stopService<TimerService>()
             exerciseDataManager.showSeries()
         }
         progressBar.max = breakIntervalInMillis.toInt()

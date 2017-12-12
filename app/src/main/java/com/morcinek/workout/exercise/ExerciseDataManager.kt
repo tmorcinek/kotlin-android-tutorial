@@ -59,4 +59,7 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
 
     val exerciseHasStarted: Boolean
         get() = (exerciseData.seriesNumber > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.New)
+
+    val isEditable: Boolean
+        get() = exerciseData.seriesState != ExerciseData.ExerciseState.New
 }

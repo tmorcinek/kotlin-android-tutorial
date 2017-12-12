@@ -36,6 +36,7 @@ class NewFragment : BaseFragment() {
         }
         dateTextView.text = formatDate(exerciseDataModel.date)
         breakButton.setOnClickListener { exerciseDataManager.showBreak() }
+        exerciseButton.setOnClickListener { exerciseDataManager.showSeries() }
     }
 
     private fun formatDate(date: Calendar) = date.formatWith(dateFormat)

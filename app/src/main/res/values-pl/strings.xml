@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Siłka</string>
     <string name="action_settings">Ustawienia</string>
+    <string name="action_edit">Edycja</string>
+    <string name="action_delete">Usuń</string>
 
     <string name="no">Nie</string>
     <string name="yes">Tak</string>
@@ -10,6 +12,7 @@
     <string name="exercise_exit_message">Czy chcesz zachować to ćwiczenie?</string>
 
     <string name="break_button">Przerwa</string>
+    <string name="exercise_button">Ćwiczenie</string>
     <string name="finish_exercise_button">Skończ ćwiczenie</string>
     <string name="series_number_label">Numer serii:</string>
     <string name="break_splash_text">Przerwa się skończyła</string>

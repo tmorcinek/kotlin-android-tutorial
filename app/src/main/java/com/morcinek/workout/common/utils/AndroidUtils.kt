@@ -13,3 +13,8 @@ inline fun <reified T : Service> Activity.stopService() {
 inline fun broadcastReceiver(crossinline onReceiveFunction: (Intent) -> Unit) = object : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) = onReceiveFunction(intent)
 }
+
+fun handleOptionItemAction(function: () -> Any): Boolean {
+    function()
+    return true
+}

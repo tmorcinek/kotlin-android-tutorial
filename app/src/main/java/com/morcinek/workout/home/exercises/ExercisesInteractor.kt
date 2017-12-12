@@ -11,7 +11,7 @@ import com.morcinek.workout.core.data.exercises.ExercisesProvider
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewModel
 import java.util.*
 
-class ExercisesInteractor(val exercisesProvider: ExercisesProvider) : DataProvider.Delegate<ExerciseDataModel> {
+class ExercisesInteractor(private val exercisesProvider: ExercisesProvider) : DataProvider.Delegate<ExerciseDataModel> {
 
     private val timeFormat by lazy { timeFormat() }
     private val dayOfWeekFormat by lazy { dayOfWeekFormat() }

@@ -1,27 +1,29 @@
 package com.morcinek.workout.exercise
 
+import android.app.Dialog
 import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.morcinek.workout.R
 import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.di.component
 import com.morcinek.workout.common.fragment.BaseFragment
 import com.morcinek.workout.common.fragment.ContentFragmentManager
 import com.morcinek.workout.common.fragment.SingleFragmentActivity
-import com.morcinek.workout.common.utils.broadcastReceiver
-import com.morcinek.workout.common.utils.putSerializableExtra
-import com.morcinek.workout.common.utils.startActivityFun
-import com.morcinek.workout.common.utils.stopService
+import com.morcinek.workout.common.utils.*
 import com.morcinek.workout.core.data.exercises.ExerciseManager
+import com.morcinek.workout.core.data.getKeyExtra
 import com.morcinek.workout.exercise.di.ExerciseComponent
 import com.morcinek.workout.exercise.di.ExerciseModule
 import com.morcinek.workout.exercise.fragments.*
 import com.morcinek.workout.settings.SettingsFragment
 import kotlinx.android.synthetic.main.content_fragment.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.indeterminateProgressDialog
 import javax.inject.Inject
 
 class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
@@ -31,6 +33,8 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
     @Inject lateinit var exerciseDataManager: ExerciseDataManager
     @Inject lateinit var exerciseManager: ExerciseManager
     @Inject lateinit var notificationCenter: NotificationCenter
+
+    val key by lazy { intent.getKeyExtra() }
 
     val exerciseComponent by lazy { component.add(ExerciseModule(this)) }
 
@@ -54,8 +58,13 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.home, menu)
+        menuInflater.inflate(R.menu.exercise, menu)
         return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.findItem(R.id.action_edit)?.isVisible =  exerciseDataManager.isEditable
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onStateChanged(exerciseState: ExerciseData.ExerciseState) {
@@ -66,6 +75,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
             ExerciseData.ExerciseState.New -> NewFragment()
             ExerciseData.ExerciseState.Loading -> LoadingFragment()
         })
+        invalidateOptionsMenu()
     }
 
     override fun onResume() {
@@ -85,24 +95,27 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
-        android.R.id.home -> {
-            onBackPressed()
-            true
+        android.R.id.home -> handleOptionItemAction { onBackPressed() }
+        R.id.action_edit -> handleOptionItemAction { exerciseDataManager.showNew() }
+        R.id.action_delete -> handleOptionItemAction {
+            alert(R.string.exercise_exit_message) {
+                positiveButton(R.string.yes) { finishWithDelete() }
+                negativeButton(R.string.no) { }
+            }.show()
         }
-        R.id.action_settings -> {
+        R.id.action_settings -> handleOptionItemAction {
             startActivityFun<SingleFragmentActivity> { putSerializableExtra(SettingsFragment::class.java) }
-            true
         }
 
         else -> super.onOptionsItemSelected(item)
     }
 
+
     override fun onBackPressed() {
-        if (!exerciseDataManager.exerciseHasStarted) {
+        if (key == null) {
             alert(R.string.exercise_exit_message) {
                 positiveButton(R.string.yes) { saveAndFinish() }
                 negativeButton(R.string.no) { finishWithDelete() }
-                neutralPressed(android.R.string.cancel) {  }
             }.show()
         } else {
             saveAndFinish()
@@ -110,13 +123,34 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
     }
 
     private fun finishWithDelete() {
-        exerciseManager.remove().addOnCompleteListener { finish() }
+        val progressDialog = indeterminateProgressDialog("") { }
+        exerciseManager.remove().addOnCompleteListener(onCompleteListener(progressDialog){
+            finish()
+        })
+//        exerciseManager.remove().addOnCompleteListener {
+//            progressDialog.dismiss()
+//            finish()
+//        }
     }
 
     private fun saveAndFinish() {
         exerciseManager.update(exerciseDataManager.exerciseDataModel).addOnCompleteListener { finish() }
+//        exerciseManager.update(exerciseDataManager.exerciseDataModel).addOnCompleteListener(object : OnCompleteListener<Void> {
+//            override fun onComplete(p0: Task<Void>) {
+//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//            }
+//
+//        })
     }
 }
 
 inline val BaseFragment.exerciseComponent: ExerciseComponent
     get() = (activity as ExerciseActivity).exerciseComponent
+
+fun <T> onCompleteListener(progressDialog: Dialog, function: () -> Any) = object : OnCompleteListener<T> {
+
+    override fun onComplete(p0: Task<T>) {
+        progressDialog.dismiss()
+        function()
+    }
+}
