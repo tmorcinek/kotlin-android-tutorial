@@ -2,7 +2,7 @@ package com.morcinek.workout.common.di
 
 import com.morcinek.workout.common.di.modules.AndroidModule
 import com.morcinek.workout.common.di.modules.ApplicationModule
-import com.morcinek.workout.common.di.modules.DataModule
+import com.morcinek.workout.core.data.DataModule
 import com.morcinek.workout.common.firebase.di.modules.FirebaseModule
 import com.morcinek.workout.exercise.TimerService
 import com.morcinek.workout.exercise.di.ExerciseComponent

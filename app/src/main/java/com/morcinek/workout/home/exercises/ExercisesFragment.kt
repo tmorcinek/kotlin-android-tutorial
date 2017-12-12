@@ -6,29 +6,22 @@ import android.view.View
 import com.morcinek.kotlin.adapter.SectionRecyclerViewAdapter
 import com.morcinek.workout.R
 import com.morcinek.workout.common.di.component
-import com.morcinek.workout.common.firebase.data.DataProvider
+import com.morcinek.workout.common.firebase.data.InteractorDelegate
 import com.morcinek.workout.common.fragment.BaseFragment
-import com.morcinek.workout.common.utils.dateFormat
-import com.morcinek.workout.common.utils.formatWith
 import com.morcinek.workout.common.utils.startActivityFun
-import com.morcinek.workout.core.data.exercises.ExerciseDataModel
-import com.morcinek.workout.core.data.exercises.ExercisesProvider
 import com.morcinek.workout.core.data.putKeyExtra
 import com.morcinek.workout.exercise.ExerciseActivity
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewAdapter
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewModel
 import kotlinx.android.synthetic.main.recycler_view.*
 import org.jetbrains.anko.design.snackbar
-import java.util.*
 import javax.inject.Inject
 
-class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataModel> {
+class ExercisesFragment : BaseFragment(), InteractorDelegate<List<ExerciseViewModel>> {
 
     override val layoutResourceId = R.layout.recycler_view
 
-    private val dateFormat by lazy { dateFormat() }
-
-    @Inject lateinit var exercisesProvider: ExercisesProvider
+    @Inject lateinit var exercisesInteractor: ExercisesInteractor
 
     private val adapter: SectionRecyclerViewAdapter
         get() = recyclerView.adapter as SectionRecyclerViewAdapter
@@ -38,37 +31,30 @@ class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataMode
         component.inject(this)
 
         setupRecyclerView()
-        exercisesProvider.delegate = this
-        exercisesProvider.register()
+        exercisesInteractor.register(this)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        exercisesProvider.unregister()
+        exercisesInteractor.unregister()
     }
 
-    override fun success(values: List<Pair<String, ExerciseDataModel>>) = adapter.setList(values.map {
-        ExerciseViewModel(it.first, it.second.name, it.second.category ?: "", formatDate(it.second.date))
-    })
+    override fun success(values: List<ExerciseViewModel>) = adapter.setList(values)
 
-    private fun formatDate(date: Calendar) = date.formatWith(dateFormat)
+    override fun failed(errorMessage: String) {
+        snackbar(view!!, errorMessage)
+    }
 
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = SectionRecyclerViewAdapter().apply {
             addSectionViewAdapter(ExerciseViewAdapter())
-            onSectionItemClickListener = object : SectionRecyclerViewAdapter.OnSectionItemClickListener {
-                override fun onSectionItemClicked(itemView: View, view: View, item: Any, position: Int) {
-                    activity.startActivityFun<ExerciseActivity> {
-                        item as ExerciseViewModel
-                        putKeyExtra(item.key)
-                    }
+            setItemClickListener {
+                activity.startActivityFun<ExerciseActivity> {
+                    it as ExerciseViewModel
+                    putKeyExtra(it.key)
                 }
             }
         }
-    }
-
-    override fun failed(errorMessage: String) {
-        snackbar(view!!, errorMessage)
     }
 }

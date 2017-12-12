@@ -15,4 +15,8 @@
 
     <dimen name="edit_text_font">22sp</dimen>
 
+    <dimen name="item_text_font">15sp</dimen>
+    <dimen name="text_secondary_font">18sp</dimen>
+    <dimen name="text_small_font">12sp</dimen>
+
 </resources>

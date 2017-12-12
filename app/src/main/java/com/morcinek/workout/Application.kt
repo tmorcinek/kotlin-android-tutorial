@@ -5,7 +5,7 @@ import com.morcinek.workout.common.di.ApplicationComponent
 import com.morcinek.workout.common.di.DaggerApplicationComponent
 import com.morcinek.workout.common.di.modules.AndroidModule
 import com.morcinek.workout.common.di.modules.ApplicationModule
-import com.morcinek.workout.common.di.modules.DataModule
+import com.morcinek.workout.core.data.DataModule
 import com.morcinek.workout.common.firebase.di.modules.FirebaseModule
 
 class Application : Application() {

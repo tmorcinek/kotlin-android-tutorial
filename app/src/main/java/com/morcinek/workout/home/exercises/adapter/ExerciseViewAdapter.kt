@@ -16,8 +16,9 @@ class ExerciseViewAdapter : SectionRecyclerViewAdapter.SectionViewAdapter<Exerci
 
     override fun onBindViewHolder(holder: ViewHolder, item: ExerciseViewModel, position: Int) {
         holder.name.text = item.name
-        holder.category.text = item.category
+        holder.category.text = "Category"
         holder.date.text = item.date
+        holder.time.text = item.time
     }
 
     override fun onCreateViewHolder(layoutInflater: LayoutInflater, parent: ViewGroup, viewType: Int)
@@ -32,7 +33,9 @@ class ExerciseViewAdapter : SectionRecyclerViewAdapter.SectionViewAdapter<Exerci
             get() = itemView.category
         val date: TextView
             get() = itemView.date
+        val time: TextView
+            get() = itemView.time
     }
 }
 
-class ExerciseViewModel(val key: String, val name: String, val category: String, val date: String)
+class ExerciseViewModel(val key: String, val name: String, val category: String, val date: String, val time: String)

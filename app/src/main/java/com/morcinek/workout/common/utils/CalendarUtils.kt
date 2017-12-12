@@ -11,3 +11,5 @@ import java.util.*
 fun Calendar.formatWith(dateFormat: SimpleDateFormat) = dateFormat.format(time)
 
 fun dateFormat() = SimpleDateFormat(BuildConfig.DATE_FORMAT)
+fun timeFormat() = SimpleDateFormat(BuildConfig.TIME_FORMAT)
+fun dayOfWeekFormat() = SimpleDateFormat(BuildConfig.DAY_OF_WEEK_FORMAT)
