@@ -10,8 +10,11 @@ import com.morcinek.workout.common.firebase.data.DataProvider
 import com.morcinek.workout.common.fragment.BaseFragment
 import com.morcinek.workout.common.utils.dateFormat
 import com.morcinek.workout.common.utils.formatWith
+import com.morcinek.workout.common.utils.startActivityFun
 import com.morcinek.workout.core.data.exercises.ExerciseDataModel
 import com.morcinek.workout.core.data.exercises.ExercisesProvider
+import com.morcinek.workout.core.data.putKeyExtra
+import com.morcinek.workout.exercise.ExerciseActivity
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewAdapter
 import com.morcinek.workout.home.exercises.adapter.ExerciseViewModel
 import kotlinx.android.synthetic.main.recycler_view.*
@@ -54,8 +57,14 @@ class ExercisesFragment : BaseFragment(), DataProvider.Delegate<ExerciseDataMode
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = SectionRecyclerViewAdapter().apply {
             addSectionViewAdapter(ExerciseViewAdapter())
-//            setItemViewClickListener { item, view ->
-//            }
+            onSectionItemClickListener = object : SectionRecyclerViewAdapter.OnSectionItemClickListener {
+                override fun onSectionItemClicked(itemView: View, view: View, item: Any, position: Int) {
+                    activity.startActivityFun<ExerciseActivity> {
+                        item as ExerciseViewModel
+                        putKeyExtra(item.key)
+                    }
+                }
+            }
         }
     }
 

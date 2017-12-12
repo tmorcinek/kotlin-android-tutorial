@@ -5,11 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.morcinek.workout.R
 import com.morcinek.workout.common.NotificationCenter
 import com.morcinek.workout.common.di.component
@@ -20,47 +15,31 @@ import com.morcinek.workout.common.utils.broadcastReceiver
 import com.morcinek.workout.common.utils.putSerializableExtra
 import com.morcinek.workout.common.utils.startActivityFun
 import com.morcinek.workout.common.utils.stopService
-import com.morcinek.workout.core.data.exercises.ExerciseDataModel
-import com.morcinek.workout.core.data.exercises.ExercisesManager
+import com.morcinek.workout.core.data.exercises.ExerciseManager
 import com.morcinek.workout.exercise.di.ExerciseComponent
 import com.morcinek.workout.exercise.di.ExerciseModule
-import com.morcinek.workout.exercise.fragments.BreakFragment
-import com.morcinek.workout.exercise.fragments.BreakSplashFragment
-import com.morcinek.workout.exercise.fragments.NewFragment
-import com.morcinek.workout.exercise.fragments.SeriesFragment
+import com.morcinek.workout.exercise.fragments.*
 import com.morcinek.workout.settings.SettingsFragment
 import kotlinx.android.synthetic.main.content_fragment.*
 import org.jetbrains.anko.alert
-import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.yesButton
 import javax.inject.Inject
 
-class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCompleteListener<Void>, ValueEventListener {
+class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate {
 
     @Inject lateinit var contentFragmentManager: ContentFragmentManager
+
     @Inject lateinit var exerciseDataManager: ExerciseDataManager
-    @Inject lateinit var exercisesManager: ExercisesManager
+    @Inject lateinit var exerciseManager: ExerciseManager
     @Inject lateinit var notificationCenter: NotificationCenter
 
-    val exerciseComponent by lazy {
-        component.add(ExerciseModule(this))
-    }
-
-    private var exerciseDataModel = ExerciseDataModel("Exercise 1")
-        set(value) {
-            field = value
-            updateUI()
-        }
+    val exerciseComponent by lazy { component.add(ExerciseModule(this)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_fragment)
         exerciseComponent.inject(this)
         setupToolbar()
-
         registerReceiver(timerReceiver, IntentFilter(TIMER_SERVICE_FINISH))
-//        exercisesManager.update(exerciseDataModel).addOnCompleteListener(this)
     }
 
     override fun onDestroy() {
@@ -74,10 +53,6 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun updateUI() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.home, menu)
         return true
@@ -89,6 +64,7 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
             ExerciseData.ExerciseState.Break -> BreakFragment()
             ExerciseData.ExerciseState.Splash -> BreakSplashFragment()
             ExerciseData.ExerciseState.New -> NewFragment()
+            ExerciseData.ExerciseState.Loading -> LoadingFragment()
         })
     }
 
@@ -122,29 +98,23 @@ class ExerciseActivity : AppCompatActivity(), ExerciseDataManager.Delegate, OnCo
     }
 
     override fun onBackPressed() {
-        if (exerciseDataManager.exerciseHasStarted) {
+        if (!exerciseDataManager.exerciseHasStarted) {
             alert(R.string.exercise_exit_message) {
-                yesButton { super.onBackPressed() }
-                noButton { }
+                positiveButton(R.string.yes) { saveAndFinish() }
+                negativeButton(R.string.no) { finishWithDelete() }
+                neutralPressed(android.R.string.cancel) {  }
             }.show()
         } else {
-            super.onBackPressed()
+            saveAndFinish()
         }
     }
 
-    override fun onComplete(p0: Task<Void>) {
-        if (!p0.isSuccessful) {
-            snackbar(rootView, p0.exception?.localizedMessage ?: "")
-            exercisesManager.get().addListenerForSingleValueEvent(this)
-        }
+    private fun finishWithDelete() {
+        exerciseManager.remove().addOnCompleteListener { finish() }
     }
 
-    override fun onCancelled(p0: DatabaseError?) {
-        snackbar(rootView, p0?.message ?: "")
-    }
-
-    override fun onDataChange(p0: DataSnapshot?) {
-        exerciseDataModel = p0!!.getValue(ExerciseDataModel::class.java)!!
+    private fun saveAndFinish() {
+        exerciseManager.update(exerciseDataManager.exerciseDataModel).addOnCompleteListener { finish() }
     }
 }
 

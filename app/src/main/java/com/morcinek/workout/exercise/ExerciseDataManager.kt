@@ -1,11 +1,15 @@
 package com.morcinek.workout.exercise
 
 import android.content.SharedPreferences
+import com.morcinek.workout.core.data.exercises.ExerciseDataModel
 import com.morcinek.workout.settings.breakTime
 
 class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
 
     var exerciseData: ExerciseData = ExerciseData()
+
+    lateinit var exerciseDataModel : ExerciseDataModel
+
     val breakIntervalSeconds: Long
         get() = sharedPreferences.breakTime.toLong()
 
@@ -18,6 +22,17 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
     fun incrementSeriesNumber() {
         exerciseData.seriesNumber += 1
     }
+
+    fun showNew() {
+        exerciseData.seriesState = ExerciseData.ExerciseState.New
+        notifyStateChanged()
+    }
+
+    fun showLoading() {
+        exerciseData.seriesState = ExerciseData.ExerciseState.Loading
+        notifyStateChanged()
+    }
+
 
     fun showBreak() {
         exerciseData.seriesState = ExerciseData.ExerciseState.Break
@@ -43,5 +58,5 @@ class ExerciseDataManager(private val sharedPreferences: SharedPreferences) {
     }
 
     val exerciseHasStarted: Boolean
-        get() = (exerciseData.seriesNumber > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.Series)
+        get() = (exerciseData.seriesNumber > 1) or (exerciseData.seriesState != ExerciseData.ExerciseState.New)
 }

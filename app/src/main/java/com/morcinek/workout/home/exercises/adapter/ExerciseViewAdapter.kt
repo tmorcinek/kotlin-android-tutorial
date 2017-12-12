@@ -23,6 +23,8 @@ class ExerciseViewAdapter : SectionRecyclerViewAdapter.SectionViewAdapter<Exerci
     override fun onCreateViewHolder(layoutInflater: LayoutInflater, parent: ViewGroup, viewType: Int)
             = ViewHolder(layoutInflater.inflate(R.layout.exercises_item, parent, false))
 
+    override fun clickableViews(holder: ViewHolder) = listOf(holder.itemView)
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView
             get() = itemView.name

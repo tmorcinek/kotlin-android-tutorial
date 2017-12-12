@@ -2,9 +2,12 @@
     <string name="app_name">Siłka</string>
     <string name="action_settings">Ustawienia</string>
 
+    <string name="no">Nie</string>
+    <string name="yes">Tak</string>
+
     <string name="exercise_label">Ćwiczenie</string>
     <string name="exercise_name">Nazwa ćwiczenia</string>
-    <string name="exercise_exit_message">Czy na pewno chcesz wyjść z ćwiczenia?</string>
+    <string name="exercise_exit_message">Czy chcesz zachować to ćwiczenie?</string>
 
     <string name="break_button">Przerwa</string>
     <string name="finish_exercise_button">Skończ ćwiczenie</string>

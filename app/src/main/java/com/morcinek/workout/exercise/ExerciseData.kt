@@ -1,8 +1,8 @@
 package com.morcinek.workout.exercise
 
-class ExerciseData(var seriesNumber: Int = 1, var seriesState: ExerciseState = ExerciseState.Series) {
+class ExerciseData(var seriesNumber: Int = 1, var seriesState: ExerciseState = ExerciseState.Loading) {
 
-    enum class ExerciseState{
-        Series, Break, Splash, New
+    enum class ExerciseState {
+        Series, Break, Splash, New, Loading
     }
 }
